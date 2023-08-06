@@ -1,6 +1,6 @@
 # IT-Project
 COMP30022
-##Getting started
+## Getting started
 ```
 //下载所需要的包
 npm install
