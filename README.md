@@ -35,6 +35,7 @@ Follow these steps to run the project:
    npm start
    ```
 it is ok if there are warning, just make sure no error
+If you encounter a different error than the one above, please proceed with the first step: Delete the `node_modules` folder
 
    
 ### Directory structure
