@@ -6,6 +6,13 @@ COMP30022
 ### How to Run
 
 Follow these steps to run the project:
+0. **Download ZIP file from github**
+   ```
+   cd your file location should be here   eg. cd project-main
+   then press ls
+   make sure it show
+   backend		frontend
+   ```
 
 1. **Delete the `node_modules` folder:**
    Run the following command in the project's root directory to delete the `node_modules` folder:  **do not delete package.json**
