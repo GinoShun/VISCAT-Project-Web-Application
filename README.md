@@ -35,6 +35,7 @@ Follow these steps to run the project:
    npm start
    ```
 it is ok if there are warning, just make sure no error
+
    
 ### Directory structure
 
@@ -89,6 +90,7 @@ it is ok if there are warning, just make sure no error
             │   └── authReducer.js         //ignore
             └── store.js                   //ignore
 ```
+[![how to debug faster?!!!](https://i.postimg.cc/gj8MYTXc/2023-09-06-2-13-30.png)](https://postimg.cc/m1Z3jVyK)
 
 ### 代码浏览指南
 1. 先从api.js 开始了解现有的router 如/login /register or /dashboard 等
@@ -97,3 +99,4 @@ it is ok if there are warning, just make sure no error
 tip: authbox标签下可以使用<div></div>标签,或许可以通过这样的方式实现正式版login page 左右滑动的效果
 主要就是改authpage 文件夹下和shared/component 文件夹下的文件
 可以随便加function,以及标签但尽量不要删除现有的function(不包括html标签等视觉层),因为有一些fucntion会进行validate.
+
