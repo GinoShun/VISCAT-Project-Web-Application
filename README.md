@@ -16,7 +16,8 @@ Follow these steps to run the project:
    cd backend
    npm install
    npm start
-   cd ../frontend
+   ```
+   cd frontend
    npm install
    npm start
    ```
