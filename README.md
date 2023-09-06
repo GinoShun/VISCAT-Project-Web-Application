@@ -25,6 +25,7 @@ Follow these steps to run the project:
    npm install
    npm start
    ```
+   skip this if nothing happend
    scenario: app crashed - waiting for file changes before starting...
    it means this port has been used
    solution:
