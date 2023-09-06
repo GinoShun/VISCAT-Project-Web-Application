@@ -1,6 +1,7 @@
 # IT-Project
 COMP30022
-###Environment
+[使用教程视频版](https://youtu.be/LpWXKtgOasY)
+### Environment
 - **Node.js Version:** 18.16+ | **Source:** [Node.js Official Website](https://nodejs.org/en)
 - **MongoDB Version:** 6.0.9+ | **Source:** [MongoDB Official Website](https://www.mongodb.com/try/download/community)
 ### How to Run
