@@ -8,9 +8,10 @@ COMP30022
 Follow these steps to run the project:
 
 1. **Delete the `node_modules` folder:**
-   Run the following command in the project's root directory to delete the `node_modules` folder:
+   Run the following command in the project's root directory to delete the `node_modules` folder:**do not delete package.json**
    ```sh
    rm -rf node_modules
+   rm package-lock.json(optional)
 2. **then start backend and frontend fron terminal**
    ```
    cd backend
@@ -35,7 +36,7 @@ Follow these steps to run the project:
    npm start
    ```
 it is ok if there are warning, just make sure no error
-If you encounter a different error than the one above, please proceed with the first step: Delete the `node_modules` folder
+If you encounter a different error than the one above, please proceed with the first step: Delete the `node_modules` folder and `package-lock.js`, **do not delete package.json**!!!!!!
 
    
 ### Directory structure
