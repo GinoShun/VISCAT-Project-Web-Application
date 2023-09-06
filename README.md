@@ -8,7 +8,7 @@ COMP30022
 Follow these steps to run the project:
 
 1. **Delete the `node_modules` folder:**
-   Run the following command in the project's root directory to delete the `node_modules` folder:**do not delete package.json**
+   Run the following command in the project's root directory to delete the `node_modules` folder:  **do not delete package.json**
    ```sh
    rm -rf node_modules
    rm package-lock.json(optional)
