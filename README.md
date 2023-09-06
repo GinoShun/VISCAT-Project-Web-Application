@@ -25,12 +25,12 @@ Follow these steps to run the project:
    npm install
    npm start
    ```
-   skip this if nothing happend
    scenario: app crashed - waiting for file changes before starting...
    it means this port has been used
    solution:
    Find processes using port 3000
    ```
+   //skip this if nothing happend
    //get PID from this Command Line
    lsof -i :3000
    //Terminate the process, change PID to a number
