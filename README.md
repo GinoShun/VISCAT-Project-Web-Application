@@ -5,7 +5,7 @@ COMP30022
 - **MongoDB Version:** 6.0.9+ | **Source:** [MongoDB Official Website](https://www.mongodb.com/try/download/community)
 ### How to Run
 
-Follow these steps to run the project:  
+Follow these steps to run the project:        
 0. **Download ZIP file from github**
    ```
    cd your file location should be here   eg. cd project-main
