@@ -18,6 +18,7 @@ const loginSchema = Joi.object({
 
 router.post('/register', validator.body(registerSchema), authControllers.controllers.postRegister);
 router.post('/login', validator.body(loginSchema), authControllers.controllers.postLogin);
+router.post('/student', authControllers.controllers.postStudent);
 
 router.get("/test", auth, (req, res) => {
     res.send("request passed");

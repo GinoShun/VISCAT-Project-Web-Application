@@ -6,8 +6,8 @@ const postRegister = async (req, res) => {
     try {
         const { username, mail, password } = req.body;
 
-        //防止用户已经存在的判断
-        const userExists = await User.exists({ mail: mail.toLowerCase() });
+        //防止学生已经存在的判断
+        const userExists = await User.exists({ name: this.name.toLowerCase() });
 
         if (userExists) {
             return res.status(409).send("E-mail already in use from postRegister.js");
