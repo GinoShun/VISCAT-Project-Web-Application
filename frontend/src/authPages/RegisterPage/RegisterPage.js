@@ -38,6 +38,7 @@ const RegisterPage = ({ register }) => {
             })
         )
     }, [mail, username, password, setIsFormValid]);
+    // change here
     return (
         <AuthBox>
             <Typography variant='h5' sx={{ color: "white" }}>

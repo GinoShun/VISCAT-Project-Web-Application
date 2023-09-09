@@ -4,6 +4,8 @@ import RedirectInfo from '../../shared/components/RedirectInfo';
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from '@mui/material';
 
+//ignore
+//这边是alert 信息
 const getFormNotValidMessage = () => {
     return "Username, Password or email is Not valid";
 }

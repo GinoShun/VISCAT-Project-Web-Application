@@ -29,7 +29,10 @@ const LoginPage = ({ login }) => {
         }
         login( userDetails, history )
     }
+    
+    //change here
     return (
+        // from AuthBox.js, the structure of login page
         <AuthBox>
             <LoginPageHeader />
             <LoginPageInputs
@@ -43,6 +46,7 @@ const LoginPage = ({ login }) => {
     );
 };
 
+//igonore 
 const mapActionsToProps = (dispatch) => {
     return {
         ...getActions(dispatch),
