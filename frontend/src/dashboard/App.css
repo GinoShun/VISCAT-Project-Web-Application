@@ -1,0 +1,133 @@
+/* Resetting default browser styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #eaeaea;
+  margin: 30px;
+  margin-left: 80px;
+  margin-right: 80px;
+  padding: 0;
+}
+
+/* Main content styles */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.datamenus {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 0px;
+  color: #112127;
+}
+.contextData {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+/* Preview window styles */
+
+.preview-window {
+  flex: 0.7;
+  padding: 10px;
+  height: flex;
+  background-color: #c0d6df;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.preview-window {
+  margin-left: 10px;
+}
+.preview-window-content {
+  background-color: #b2cad3;
+  flex: 0.3;
+  padding: 20px;
+  padding-top: 10px;
+  margin: 10px;
+  margin-top: 5px;
+  font-size: 18px;
+  height: flex;
+}
+/* File database  */
+.file-database {
+  margin-right: 10px;
+}
+.file-database {
+  text-align: center;
+  flex: 0.3;
+  padding: 10px;
+  background-color: #c0d6df;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.filterName {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+.time-frame {
+  background-color: #4f6d7a;
+  flex: 0.3;
+  color: white;
+  padding: 20px;
+  margin-top: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+.file-database-list {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 20px;
+  padding-top: 40px;
+  background-color: #a1beca;
+}
+
+.today {
+  height: 10vh;
+}
+
+.last-3-day {
+  height: 15vh;
+}
+
+.last-30-day {
+  height: 35vh;
+}
+/* graph window styles */
+.graphArea1 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.graphSelection {
+  margin-top: 25px;
+  margin: 20px;
+  width: 30%;
+  height: 35vh;
+  background-color: #4f6d7a;
+}
+.graphType1 {
+  margin-top: 25px;
+  margin: 20px;
+  width: 60%;
+  height: 35vh;
+  background-color: #4f6d7a;
+}
+.graphType2 {
+  margin: 20px;
+  margin-top: 50px;
+  height: 35vh;
+  background-color: #4f6d7a;
+}
+/* raw data area styles */
+.rawDataArea {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 80vh;
+  margin-top: 35px;
+  background-color: #4f6d7a;
+}
