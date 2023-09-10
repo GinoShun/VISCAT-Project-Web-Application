@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import FigureOne from './FigureOne';
 
+
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 

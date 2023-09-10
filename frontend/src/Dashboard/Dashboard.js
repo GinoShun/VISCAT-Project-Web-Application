@@ -6,7 +6,7 @@ import AppBar from "./AppBar/AppBar";
 import { logout } from "../shared/utils/auth";
 import { connect } from "react-redux";
 import { getActions } from "../store/actions/authActions"; 
-import PrimarySearchAppBar from "./AppBar/NavBar";
+
 
 const Wrapper = styled("div")({
   width: "100%",

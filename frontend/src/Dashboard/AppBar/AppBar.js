@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/system";
 import DropdownMenu from "./DropdownMenu";
 import HostPageButton from "./HostPageButton";
@@ -10,6 +10,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import QrCode2Icon from '@mui/icons-material/QrCode2';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import QRCodeGenerator from './QRCodeGenerator';
 
 const MainContainer = styled("div")({
   position: "absolute",
@@ -41,6 +47,16 @@ const Spacing = styled("div")({
 });
 
 const AppBar = () => {
+  const [openQRCode, setOpenQRCode] = useState(false); // 用于控制 Dialog 显示/隐藏的状态
+
+  const handleQrCodeIconClick = () => {
+    setOpenQRCode(true); // 点击图标时打开 Dialog
+  };
+
+  const handleCloseQRCode = () => {
+    setOpenQRCode(false); // 关闭 Dialog
+  };
+
   return (
     <MainContainer>
       <LeftContainer>
@@ -48,9 +64,10 @@ const AppBar = () => {
         <TextField
           label="Search"
           variant="outlined"
-          style={{ width: '15vw',
-          backgroundColor:"white",  
-        }} 
+          style={{
+            width: '15vw',
+            backgroundColor: "white",
+          }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -63,10 +80,21 @@ const AppBar = () => {
         />
       </LeftContainer>
       <RightContainer>
+        
         <MenuItem>
           <IconButton
             size="large"
-            aria-label="show 17 new notifications"
+            color="inherit"
+            onClick={handleQrCodeIconClick} // 点击图标时打开 Dialog
+          >
+            <Badge badgeContent={''} color="error">
+              <QrCode2Icon />
+            </Badge>
+          </IconButton>
+        </MenuItem>
+        <MenuItem>
+          <IconButton
+            size="large"
             color="inherit"
           >
             <Badge badgeContent={17} color="error">
@@ -74,10 +102,22 @@ const AppBar = () => {
             </Badge>
           </IconButton>
         </MenuItem>
-        <Spacing /> {/* 这里添加一个空白的 div 来设置间距 */}
+        <Spacing />
         <HostPageButton />
       </RightContainer>
+
+      {/* 使用 Dialog 来显示 QRCodeGenerator 组件 */}
+      <Dialog open={openQRCode} onClose={handleCloseQRCode}>
+        <DialogTitle>QR Code</DialogTitle>
+        <DialogContent>
+          <QRCodeGenerator />
+        </DialogContent>
+        <DialogActions>
+          <CustomPrimaryButton onClick={handleCloseQRCode}>Close</CustomPrimaryButton>
+        </DialogActions>
+      </Dialog>
     </MainContainer>
+
   );
 };
 
