@@ -3,50 +3,158 @@ import AuthBox from '../../shared/components/AuthBox';
 import LoginPageHeader from './LoginPageHeader';
 import LoginPageInputs from './LoginPageInputs';
 import LoginPageFooter from './LoginPageFooter';
-import { validateLoginForm } from '../../shared/utils/validators';
-import { connect } from "react-redux";
+import RegisterPageInputs from '../RegisterPage/RegisterPageInputs';
+import RegisterPageFooter from '../RegisterPage/RegisterPageFooter';
+import RegisterPageHeader from '../RegisterPage/RegisterPageHeader';
+import RedirectInfo from '../../shared/components/RedirectInfo';
+import '../authStyles.css';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { validateLoginForm, validateRegisterForm } from '../../shared/utils/validators';
+import { connect } from 'react-redux';
 import { getActions } from '../../store/actions/authActions';
 import { useNavigate } from 'react-router-dom';
 
+const theme = createTheme({
+  shape: {
+    borderRadius: 28,
+  },
+});
 
-const LoginPage = ({ login }) => {
+const LoginPage = ({ login, register }) => {
     const history = useNavigate();
-    const [mail, setMail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isFormValid, setIsFormValid] = useState(false);
+    const [loginMail, setLoginMail] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
+    const [isLoginFormValid, setIsLoginFormValid] = useState(false);
+
+    const [registerMail, setRegisterMail] = useState('');
+    const [registerUsername, setRegisterUsername] = useState('');
+    const [registerPassword, setRegisterPassword] = useState('');
+    const [isRegisterFormValid, setIsRegisterFormValid] = useState(false);
+
+    const [activeTab, setActiveTab] = useState('signIn');
 
     useEffect(() => {
-        setIsFormValid(validateLoginForm({ mail, password }));
-    }, [mail, password, setIsFormValid]);
+        setIsLoginFormValid(validateLoginForm({ mail: loginMail, password: loginPassword }));
+    }, [loginMail, loginPassword]);
+
+    useEffect(() => {
+        setIsRegisterFormValid(
+            validateRegisterForm({
+                mail: registerMail,
+                username: registerUsername,
+                password: registerPassword,
+            })
+        );
+    }, [registerMail, registerUsername, registerPassword]);
 
     const handleLogin = () => {
-        console.log(mail);
-        console.log(password);
-        console.log("LoginPage.js");
         const userDetails = {
-            mail,
-            password
+            mail: loginMail,
+            password: loginPassword,
+        };
+        login(userDetails, history);
+    };
+
+    const handleRegister = () => {
+        const userDetails = {
+            mail: registerMail,
+            username: registerUsername,
+            password: registerPassword,
+        };
+        register(userDetails, history);
+    };
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+        if (tab === 'signIn') {
+            history("/login");
+        } else {
+            history("/register");
         }
-        login( userDetails, history )
-    }
+    };
+
     return (
-        <AuthBox>
-            <LoginPageHeader />
-            <LoginPageInputs
-                mail={mail}
-                setMail={setMail}
-                password={password}
-                setPassword={setPassword}
-            />
-            <LoginPageFooter isFormValid={isFormValid} handleLogin={handleLogin} />
-        </AuthBox>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div className="App">
+                <div className={`container ${activeTab === 'signUp' ? 'right-panel-active' : ''}`} id="container">
+                    {activeTab === 'signIn' ? (
+                        <div className="form-container sign-in-container">
+                            <LoginPageHeader />
+                            <LoginPageInputs
+                                mail={loginMail}
+                                setMail={setLoginMail}
+                                password={loginPassword}
+                                setPassword={setLoginPassword}
+                            />
+                            <LoginPageFooter isFormValid={isLoginFormValid} handleLogin={handleLogin} />
+                        </div>
+                    ) : (
+                        <div className="form-container sign-in-container">
+                            <RegisterPageHeader />
+                            <RegisterPageInputs
+                                mail={registerMail}
+                                setMail={setRegisterMail}
+                                username={registerUsername}
+                                setUsername={setRegisterUsername}
+                                password={registerPassword}
+                                setPassword={setRegisterPassword}
+                            />
+                            <RegisterPageFooter
+                                isFormValid={isRegisterFormValid}
+                                handleRegister={handleRegister}
+                            />
+                        </div>
+                    )}
+                    <div className="overlay-container">
+                        <div className="overlay">
+                            <div className="overlay-panel overlay-left">
+                                <h1>Welcome Back!</h1>
+                                <p>To keep connected with us, please login with your personal info</p>
+                                <button
+                                    className="ghost"
+                                    id="signIn"
+                                    onClick={() => handleTabChange('signIn')}
+                                >
+                                    <RedirectInfo
+                                        redirectText="Log in"
+                                        additionalStyles={{ marginTop: '5px' }}
+                                        redirectHandler={() => handleTabChange('signIn')}
+                                    />
+                                </button>
+                            </div>
+                            <div className="overlay-panel overlay-right">
+                                <img
+                                    src={require('../../../src/Logo.png')}
+                                    style={{ width: '200px', height: '200px' }}
+                                    alt="Logo"
+                                />
+                                <p>Enter your personal details and start your journey with us</p>
+                                <button
+                                    className="ghost"
+                                    id="signUp"
+                                    onClick={() => handleTabChange('signUp')}
+                                >
+                                    <RedirectInfo
+                                        redirectText="Sign Up"
+                                        additionalStyles={{ marginTop: '5px' }}
+                                        redirectHandler={() => handleTabChange('signUp')}
+                                    />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ThemeProvider>
     );
 };
 
 const mapActionsToProps = (dispatch) => {
     return {
         ...getActions(dispatch),
-    }
-}
+    };
+};
 
 export default connect(null, mapActionsToProps)(LoginPage);

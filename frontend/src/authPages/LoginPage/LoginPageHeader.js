@@ -1,16 +1,13 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Typography, Button } from '@mui/material';
+import '../authStyles.css';
 
-const LoginPageHeader = () => {
+const LoginPageHeader = ({ setType }) => {
     return (
-        <>
-            <Typography variant='h5' sx={{ color:"#457b9d"}}>
-                LoginPageHeader.js
-            </Typography>
-            <Typography sx={{ color: "#a8dadc"}}>
-                LoginPageHeader.js222
-            </Typography>
-        </>
+        <div className="App">
+            <Typography variant="h4" className="login-header">Log in</Typography>
+            <Typography variant="subtitle1">Welcome to Vis-CAT</Typography>
+        </div>
     );
 };
 
