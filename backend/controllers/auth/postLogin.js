@@ -7,6 +7,7 @@ const postLogin = async (req, res) => {
         const { mail, password } = req.body;
         const user = await User.findOne({ mail: mail.toLowerCase() });
 
+
         if (user && (await bcrypt.compare(password, user.password))){
             const token = jwt.sign({
                 userId: user._id,
