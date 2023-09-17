@@ -29,28 +29,7 @@ const StyledButton = styled('button')({
     },
 });
 
-const StyledButton = styled('button')({
-    borderRadius: '20px',
-    border: '1px solid #005086',
-    backgroundColor: '#005086',
-    color: '#ffffff',
-    fontSize: '12px',
-    fontWeight: 'bold',
-    padding: '12px 45px',
-    letterSpacing: '1px',
-    textTransform: 'uppercase',
-    transition: 'transform 80ms ease-in',
-    '&:active': {
-      transform: 'scale(0.95)',
-    },
-    '&:focus': {
-      outline: 'none',
-    },
-    '&.ghost': {
-      backgroundColor: 'transparent',
-      borderColor: '#ffffff',
-    },
-  });
+
 const getFormNotValidMessage = () => {
     return "Enter correct email and password";
 }
@@ -60,10 +39,6 @@ const getFormValidMessage = () => {
 }
 
 const LoginPageFooter = ({ handleLogin, isFormValid }) => {
-    const history = useNavigate();
-    const handlePushToRegisterPage = () => {
-        history("/register");
-    }
 
     return (
         <>
@@ -75,7 +50,7 @@ const LoginPageFooter = ({ handleLogin, isFormValid }) => {
             >
                 <span> {/* Use span to wrap button to avoid disabled button not showing Tooltip */}
                     <StyledButton 
-                        type="submit"
+                        type="button"
                         disabled={!isFormValid}
                         onClick={handleLogin}
                     >

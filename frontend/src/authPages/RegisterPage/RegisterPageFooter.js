@@ -44,6 +44,7 @@ const RegisterPageFooter = ({ handleRegister, isFormValid }) => {
         <Tooltip title={!isFormValid ? getFormNotValidMessage() : getFormValidMessage()}>
             <div>
                 <StyledButton 
+                    type = "button"
                     disabled={!isFormValid}
                     onClick={handleRegister}
                 >
