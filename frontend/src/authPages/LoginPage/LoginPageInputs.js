@@ -1,6 +1,4 @@
 import React from 'react';
-import InputWithLabel from '../../shared/components/InputWithLabel';
-import '../authStyles.css';
 import { TextField } from "@mui/material";
 
 const LoginPageInputs = ({ mail, setMail, password, setPassword }) => {

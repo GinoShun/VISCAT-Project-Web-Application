@@ -77,71 +77,76 @@ const LoginPage = ({ login, register }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <div className="App">
-                <div className={`container ${activeTab === 'signUp' ? 'right-panel-active' : ''}`} id="container">
-                    {activeTab === 'signIn' ? (
-                        <div className="form-container sign-in-container">
-                            <LoginPageHeader />
-                            <LoginPageInputs
-                                mail={loginMail}
-                                setMail={setLoginMail}
-                                password={loginPassword}
-                                setPassword={setLoginPassword}
-                            />
-                            <LoginPageFooter isFormValid={isLoginFormValid} handleLogin={handleLogin} />
-                        </div>
-                    ) : (
-                        <div className="form-container sign-in-container">
-                            <RegisterPageHeader />
-                            <RegisterPageInputs
-                                mail={registerMail}
-                                setMail={setRegisterMail}
-                                username={registerUsername}
-                                setUsername={setRegisterUsername}
-                                password={registerPassword}
-                                setPassword={setRegisterPassword}
-                            />
-                            <RegisterPageFooter
-                                isFormValid={isRegisterFormValid}
-                                handleRegister={handleRegister}
-                            />
-                        </div>
-                    )}
-                    <div className="overlay-container">
-                        <div className="overlay">
-                            <div className="overlay-panel overlay-left">
-                                <h1>Welcome Back!</h1>
-                                <p>To keep connected with us, please login with your personal info</p>
-                                <button
-                                    className="ghost"
-                                    id="signIn"
-                                    onClick={() => handleTabChange('signIn')}
-                                >
-                                    <RedirectInfo
-                                        redirectText="Log in"
-                                        additionalStyles={{ marginTop: '5px' }}
-                                        redirectHandler={() => handleTabChange('signIn')}
+            <div className="auth-wrapper">
+                <div className="loginApp">
+                    <div className={"container " + (activeTab === "signUp" ? "right-panel-active" : "")} id="container">
+                        {activeTab === 'signIn' ? (
+                            <div className="form-container sign-in-container">
+                                <form>
+                                    <LoginPageHeader />
+                                    <LoginPageInputs
+                                        mail={loginMail}
+                                        setMail={setLoginMail}
+                                        password={loginPassword}
+                                        setPassword={setLoginPassword}
                                     />
-                                </button>
+                                    <LoginPageFooter isFormValid={isLoginFormValid} handleLogin={handleLogin} />
+                                </form>
+                                
                             </div>
-                            <div className="overlay-panel overlay-right">
-                                <img
-                                    src={require('../../../src/Logo.png')}
-                                    style={{ width: '200px', height: '200px' }}
-                                    alt="Logo"
-                                />
-                                <p>Enter your personal details and start your journey with us</p>
-                                <button
-                                    className="ghost"
-                                    id="signUp"
-                                    onClick={() => handleTabChange('signUp')}
-                                >
-                                    <RedirectInfo
-                                        redirectText="Sign Up"
-                                        additionalStyles={{ marginTop: '5px' }}
-                                        redirectHandler={() => handleTabChange('signUp')}
+                        ) : (
+                            <div className="form-container sign-up-container">
+                                <form>
+                                    <RegisterPageHeader />
+                                    <RegisterPageInputs
+                                        mail={registerMail}
+                                        setMail={setRegisterMail}
+                                        username={registerUsername}
+                                        setUsername={setRegisterUsername}
+                                        password={registerPassword}
+                                        setPassword={setRegisterPassword}
                                     />
-                                </button>
+                                    <RegisterPageFooter
+                                        isFormValid={isRegisterFormValid}
+                                        handleRegister={handleRegister}
+                                    />
+                                </form>
+                            </div>
+                        )}
+                        <div className="overlay-container">
+                            <div className="overlay">
+                                <div className="overlay-panel overlay-left">
+                                    <h1>Welcome Back!</h1>
+                                    <p>To keep connected with us, please login with your personal info</p>
+                                    <button
+                                        className="ghost"
+                                        id="signIn"
+                                        onClick={() => handleTabChange('signIn')}
+                                    >
+                                        <RedirectInfo
+                                            redirectText="Log in"
+                                            redirectHandler={() => handleTabChange('signIn')}
+                                        />
+                                    </button>
+                                </div>
+                                <div className="overlay-panel overlay-right">
+                                    <img
+                                        src={require('../../../src/Logo.png')}
+                                        style={{ width: '200px', height: '200px' }}
+                                        alt="Logo"
+                                    />
+                                    <p>Enter your personal details and start your journey with us</p>
+                                    <button
+                                        className="ghost"
+                                        id="signUp"
+                                        onClick={() => handleTabChange('signUp')}
+                                    >
+                                        <RedirectInfo
+                                            redirectText="Sign Up"
+                                            redirectHandler={() => handleTabChange('signUp')}
+                                        />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
