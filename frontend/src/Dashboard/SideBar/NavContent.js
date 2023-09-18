@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 const containerStyle = {
-    marginTop: '24px', // 下移
+    marginTop: '10px', // 下移
 
     padding: '0 10px',
   };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
-import logo from '../../Static/VisCatLogo.png'
+import logo from '../../static/VisCatLogo.png'
 
 const FriendsTitle = ({ title }) => {
   return (
@@ -10,7 +10,7 @@ const FriendsTitle = ({ title }) => {
         sx={{
           textTransform: "uppercase",
           color: "#8e9297",
-          fontSize: "1.5em",
+          fontSize: "2em",
           marginTop: "10px",
         }}
       >

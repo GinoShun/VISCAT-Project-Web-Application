@@ -1,124 +1,177 @@
-import React, { useState } from "react";
-import { styled } from "@mui/system";
-import DropdownMenu from "./DropdownMenu";
-import HostPageButton from "./HostPageButton";
-import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
-import TextField from '@mui/material/TextField';
+import React, { useState } from 'react';
+import { styled } from '@mui/system';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
-import Badge from '@mui/material/Badge';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import QrCode2Icon from '@mui/icons-material/QrCode2';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import QRCodeGenerator from './QRCodeGenerator';
-
-const MainContainer = styled("div")({
-  position: "absolute",
-  right: "0",
-  top: "0",
-  height: "70px",
-  borderBottom: "1px solid black",
-  backgroundColor: "#CAE7D4",
-  width: "calc(100% - 280px)",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  padding: "0 15px",
-});
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import HostPageButton from './HostPageButton';
+import SearchBlank from './SearchBlank';
+import { logout  } from '../../shared/utils/auth';
 
 const LeftContainer = styled("div")({
-  display: "flex",
-  alignItems: "center",
+    display: "flex",
+    alignItems: "center",
 });
 
 const RightContainer = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  marginRight: "10px",
+    display: "flex",
+    alignItems: "center",
+    marginRight: "10px",
 });
 
-const Spacing = styled("div")({
-  marginRight: "10px", // 添加右侧边距
-});
+export default function PrimarySearchAppBar({ flag }) {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [shouldDisplaySearch, setShouldDisplaySearch] = React.useState(true);
+    const [temp, setTemp] = useState("70%");
+    const open = Boolean(anchorEl);
 
-const AppBar = () => {
-  const [openQRCode, setOpenQRCode] = useState(false); // 用于控制 Dialog 显示/隐藏的状态
 
-  const handleQrCodeIconClick = () => {
-    setOpenQRCode(true); // 点击图标时打开 Dialog
-  };
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleCloseQRCode = () => {
-    setOpenQRCode(false); // 关闭 Dialog
-  };
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleProfileMenuClose = () => {
+        setAnchorEl(null);
+    };
 
-  return (
-    <MainContainer>
-      <LeftContainer>
-        <DropdownMenu />
-        <TextField
-          label="Search"
-          variant="outlined"
-          style={{
-            width: '15vw',
-            backgroundColor: "white",
-          }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton aria-label="Search">
-                  <SearchIcon />
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+    };
+
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+    };
+
+    const handleClick = () => {
+        // 调用 toggleSidebar 函数，切换 Sidebar 的显示状态
+
+        // 在这里修改 temp 和 flag 的值
+        if (temp === "70%") {
+            setTemp("100%");
+            flag("0"); // 传递 flag 到父组件
+        } else {
+            setTemp("70%");
+            flag("1"); // 传递 flag 到父组件
+        }
+    }
+
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+    );
+
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+            <MenuItem onClick={handleProfileMenuOpen}>
+                <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <AccountCircle />
                 </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </LeftContainer>
-      <RightContainer>
-        
-        <MenuItem>
-          <IconButton
-            size="large"
-            color="inherit"
-            onClick={handleQrCodeIconClick} // 点击图标时打开 Dialog
-          >
-            <Badge badgeContent={''} color="error">
-              <QrCode2Icon />
-            </Badge>
-          </IconButton>
-        </MenuItem>
-        <MenuItem>
-          <IconButton
-            size="large"
-            color="inherit"
-          >
-            <Badge badgeContent={17} color="error">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </MenuItem>
-        <Spacing />
-        <HostPageButton />
-      </RightContainer>
+                <p>Profile</p>
+            </MenuItem>
+        </Menu>
+    );
 
-      {/* 使用 Dialog 来显示 QRCodeGenerator 组件 */}
-      <Dialog open={openQRCode} onClose={handleCloseQRCode}>
-        <DialogTitle>QR Code</DialogTitle>
-        <DialogContent>
-          <QRCodeGenerator />
-        </DialogContent>
-        <DialogActions>
-          <CustomPrimaryButton onClick={handleCloseQRCode}>Close</CustomPrimaryButton>
-        </DialogActions>
-      </Dialog>
-    </MainContainer>
+    return (
+        <Box sx={{
+            flexGrow: 1,
+            position: "absolute",
+            right: "0",
+            height: "70px",
+            width: temp,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingRight:"8px",
+        }}>
+            <AppBar position="static" sx={{ backgroundColor: '#dadada', width: '100%', boxShadow: 'none', height: '70px' }}>
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        sx={{ mr: 2 }}
+                        onClick={handleClick}
+                    >
+                        <MenuIcon />
+                    </IconButton>
 
-  );
-};
+                    <Box sx={{ flexGrow: 1 }} />
 
-export default AppBar;
+                    <LeftContainer sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                        <SearchBlank />
+                    </LeftContainer>
+                    <RightContainer sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        
+                        <HostPageButton/>
+                    </RightContainer>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
+                        >
+                            <MoreIcon />
+                        </IconButton>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+            {renderMobileMenu}
+            {renderMenu}
+        </Box>
+    );
+}

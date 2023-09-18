@@ -1,11 +1,11 @@
 const postLogin = require("./postLogin");
 const postRegister = require("./postRegister");
-const postStudent = require("./postStudent");
+const exportCSV = require("./exportCSV");
 
 exports.controllers = {
     postLogin,
     postRegister,
-    postStudent,
+    exportCSV,
 };
 
 

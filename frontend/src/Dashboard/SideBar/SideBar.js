@@ -1,24 +1,24 @@
 import React from "react";
 import { styled } from "@mui/system";
-import FriendsTitle from "./NavTitle";
+import Title from "./NavTitle";
 import BasicAccordion from "./NavContent";
 
 const MainContainer = styled("div")({
-  width: "250px",
+  width: "30%",
   height: "100%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  backgroundColor: "#c9f0d8",
+  backgroundColor: "#dadada",
 });
 
-const FriendsSideBar = () => {
+const SideBar = () => {
   return (
     <MainContainer>
-      <FriendsTitle title="Vis-Cat" />
+      <Title title="Vis-Cat" />
       <BasicAccordion />
     </MainContainer>
   );
 };
 
-export default FriendsSideBar;
+export default SideBar;

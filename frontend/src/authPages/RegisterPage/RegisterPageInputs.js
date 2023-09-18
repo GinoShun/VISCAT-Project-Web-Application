@@ -1,33 +1,40 @@
 import React from 'react';
+import '../authStyles.css';
 import InputWithLabel from '../../shared/components/InputWithLabel';
 
-const RegisterPageInputs = (props) => {
+import { TextField } from "@mui/material";
 
-    const { mail, setMail, username, setUsername, password, setPassword} = props;
+const RegisterPageInputs = ({ mail, setMail, username, setUsername, password, setPassword }) => {
     return (
         <>
-        <InputWithLabel 
-        value={mail}
-        setValue={setMail}
-        label="Email address"
-        type="text"
-        placeholder="Enter email"
-        />
-        <InputWithLabel 
-        value={username}
-        setValue={setUsername}
-        label="Username"
-        type="text"
-        placeholder="Enter username"
-        />
-        <InputWithLabel 
-        value={password}
-        setValue={setPassword}
-        label="Password"
-        type="password"
-        placeholder="Enter password"
-        />
-            
+            <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                label="Name"
+                name="name"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+            <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                label="Email"
+                name="email"
+                value={mail}
+                onChange={(e) => setMail(e.target.value)}
+            />
+            <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                label="Password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
         </>
     );
 };
