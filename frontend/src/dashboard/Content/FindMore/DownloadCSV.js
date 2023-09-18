@@ -10,7 +10,7 @@ import axios from 'axios';
 const handleDownloadCSV = async () => {
     try {
       // 发送 GET 请求到后端的下载路由
-      const response = await axios.get('http://localhost:5002/api/auth/exportCSV', { responseType: 'blob' });
+      const response = await axios.get('http://34.129.48.12:5002/api/auth/exportCSV', { responseType: 'blob' });
   
       // 创建一个 Blob 对象并设置 MIME 类型
       const blob = new Blob([response.data], { type: 'text/csv' });
