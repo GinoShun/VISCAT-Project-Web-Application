@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 import { getActions } from '../../store/actions/authActions'
 import { useNavigate } from 'react-router-dom'
 
-import logo from "../../static/VisCatLogo.png"
+import logo from "../../Static/VisCatLogo.png"
 
 const theme = createTheme({
     shape: {
