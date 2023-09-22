@@ -3,10 +3,16 @@ import logo from './image/VisCatLogo.png'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { Button } from '@mui/material'
+import { Button, Toolbar } from '@mui/material'
 import { StudentInforUploadPage } from './studentInfroUploadPage'
+import Container from '@mui/material/Container'
+import { useMediaQuery } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip'
+import { blue } from '@mui/material/colors'
 
 export function TeacherDataUploadPage ({ changePage }) {
+    const isMobile = useMediaQuery('(max-width:600px)')
     const styles = {
         mainPage: {
             display: 'flex',
@@ -16,11 +22,13 @@ export function TeacherDataUploadPage ({ changePage }) {
         },
         uploadArea: {
             justifyContent: 'center',
-            height: '70vh',
-            width: '30vw',
+            height: isMobile ? '90vh' : '70vh',
+            width: isMobile ? '80vw' : '30vw',
             backgroundColor: '#ffffff',
             borderRadius: '10px',
-            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
+            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+            overflow: 'auto',
+            padding: '20px',
         },
         headerFont: {
             fontSize: '2rem',
@@ -47,8 +55,8 @@ export function TeacherDataUploadPage ({ changePage }) {
         }
     }
     return (
-        <div style={styles.mainPage}>
-            <div style={styles.uploadArea}>
+        <Container style={styles.mainPage}>
+            <Container fixed maxWidth="sm" style={styles.uploadArea}>
                 <div style={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -110,27 +118,23 @@ export function TeacherDataUploadPage ({ changePage }) {
                     <TextField id="standard-basic" label="Class's grade " variant="standard" />
                     <TextField id="standard-basic" label="Class number" variant="standard" />
                 </Box>
-                <Button
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        margin: '30px',
-                        marginTop: '60px',
-                        marginLeft: '150px',
-                        marginRight: '150px',
-                    }}
-                    onClick={() => changePage('studentInfo')}
-                ><ArrowForwardIosIcon fontSize='large' style={{
+                <div style={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                }} /></Button>
+                    marginTop: '40px',
+                }}>
+                    <Tooltip title="Click to go next">
+                        <IconButton onClick={() => changePage('studentInfo')} ><ArrowForwardIosIcon sx={{ fontSize: 40, color: blue[500] }} style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }} />
+                        </IconButton>
+                    </Tooltip>
+                </div>
 
-            </div>
-        </div>
+            </Container>
+        </Container>
     )
 }

@@ -1,5 +1,3 @@
-import './App.css'
-import './frontType.css'
 import React, { useState } from 'react'
 import AppBar from './AppBar/AppBar'
 import { styled } from "@mui/system"
@@ -9,24 +7,31 @@ import Content from './Content/Content'
 
 const Wrapper = styled("div")({
     width: "100%",
+    overflow: "auto",
     height: "100vh",
     display: "flex",
-});
+})
 
-export function Dashboard() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true) // 添加一个状态来控制Sidebar的显示和隐藏
+export function Dashboard () {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+    const [selectedContent, setSelectedContent] = useState('rawData')
+
+    const handleContentChange = (content) => {
+        setSelectedContent(content)
+    }
 
 
 
     const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen) // 切换Sidebar的显示状态
+        setIsSidebarOpen(!isSidebarOpen)
     }
 
     return (
         <Wrapper>
-            {isSidebarOpen && <SideBar />} {/* 根据isSidebarOpen的值来决定是否渲染Sidebar */}
-            <Content />
+            {isSidebarOpen && <SideBar onContentChange={handleContentChange} isSidebarOpen={isSidebarOpen} />}
+            <Content type={selectedContent} />
             <AppBar flag={toggleSidebar} />
+
         </Wrapper>
     )
 }

@@ -5,6 +5,11 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Button } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import Box from '@mui/material/Box'
+import { useMediaQuery } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip'
+import { blue } from '@mui/material/colors'
+
 const columns = [
     { field: 'studentid', headerName: 'ID', width: 90 },
     {
@@ -49,6 +54,7 @@ const rows = [
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ]
 export function StudentInforUploadPage ({ changePage }) {
+    const isMobile = useMediaQuery('(max-width:600px)')
     const styles = {
         mainPage: {
             display: 'flex',
@@ -58,11 +64,12 @@ export function StudentInforUploadPage ({ changePage }) {
         },
         uploadArea: {
             justifyContent: 'center',
-            height: '90vh',
-            width: '50vw',
+            height: isMobile ? '90vh' : '90vh',
+            width: isMobile ? '80vw' : '50vw',
             backgroundColor: '#ffffff',
             borderRadius: '10px',
-            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
+            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+            overflow: 'auto',
         },
         headerFont: {
             fontSize: '2rem',
@@ -117,24 +124,22 @@ export function StudentInforUploadPage ({ changePage }) {
                         disableRowSelectionOnClick
                     />
                 </Box>
-                <Button
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        margin: '30px',
-                        marginLeft: '150px',
-                        marginRight: '150px',
-                    }}
-                    onClick={() => changePage('success')}
-                ><ArrowForwardIosIcon fontSize='large' style={{
+
+                <div style={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                }} /></Button>
+                    marginTop: '40px',
+                }}>
+                    <Tooltip title="Click to go next">
+                        <IconButton onClick={() => changePage('success')} ><ArrowForwardIosIcon sx={{ fontSize: 40, color: blue[500] }} style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }} />
+                        </IconButton>
+                    </Tooltip>
+                </div>
 
             </div>
         </div>

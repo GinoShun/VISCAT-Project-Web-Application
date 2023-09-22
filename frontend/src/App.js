@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LoginPage from './authPages/LoginPage/LoginPage'
 import AlertNotification from './shared/components/AlertNotification'
 import { Dashboard } from './dashboard/dashboard'
-import { InfroCollectMain } from './StudentInfoColllect/InfroCollectMain'
-
+import { StudentInfoCollect } from './StudentInfoCollect/StudentInfoCollect'
+import { Setting } from './setting/setting'
 import './App.css'
 
 
@@ -17,7 +17,8 @@ function App () {
           <Route path="/register" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/dashboard" />} />
-          <Route path="/upload" element={<InfroCollectMain />} />
+          <Route path="/upload" element={<StudentInfoCollect />} />
+          <Route path="/settings" element={<Setting />} />
         </Routes>
       </Router>
       <AlertNotification />

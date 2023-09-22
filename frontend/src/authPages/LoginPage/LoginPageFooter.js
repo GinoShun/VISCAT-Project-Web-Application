@@ -1,9 +1,9 @@
-import React from 'react';
-import CustomPrimaryButton from '../../shared/components/CustomPrimaryButton';
-import RedirectInfo from '../../shared/components/RedirectInfo';
-import '../authStyles.css';
-import { useNavigate } from "react-router-dom";
-import { Tooltip, styled, Link } from '@mui/material';
+import React from 'react'
+import CustomPrimaryButton from '../../shared/components/CustomPrimaryButton'
+import RedirectInfo from '../../shared/components/RedirectInfo'
+import '../authStyles.css'
+import { useNavigate } from "react-router-dom"
+import { Tooltip, styled, Link } from '@mui/material'
 
 
 const StyledButton = styled('button')({
@@ -27,15 +27,15 @@ const StyledButton = styled('button')({
         backgroundColor: 'transparent',
         borderColor: '#ffffff',
     },
-});
+})
 
 
 const getFormNotValidMessage = () => {
-    return "Enter correct email and password";
+    return "Enter correct email and password"
 }
 
 const getFormValidMessage = () => {
-    return "Press to log in";
+    return "Press to log in"
 }
 
 const LoginPageFooter = ({ handleLogin, isFormValid }) => {
@@ -49,17 +49,18 @@ const LoginPageFooter = ({ handleLogin, isFormValid }) => {
                 title={!isFormValid ? getFormNotValidMessage() : getFormValidMessage()}
             >
                 <span> {/* Use span to wrap button to avoid disabled button not showing Tooltip */}
-                    <StyledButton 
+                    <StyledButton
                         type="button"
                         disabled={!isFormValid}
                         onClick={handleLogin}
                     >
                         Log in
                     </StyledButton>
+
                 </span>
             </Tooltip>
         </>
-    );
-};
+    )
+}
 
-export default LoginPageFooter;
+export default LoginPageFooter

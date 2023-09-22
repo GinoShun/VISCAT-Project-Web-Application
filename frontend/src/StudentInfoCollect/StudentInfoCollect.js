@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StudentInforUploadPage } from './studentInfroUploadPage'
 import { TeacherDataUploadPage } from './teacherDataUploadPage'
 import { SuccessPage } from './successPage'
-export function InfroCollectMain () {
+export function StudentInfoCollect () {
     const [type, setType] = useState('teacherInfo')
     const changePage = (newtype) => {
         setType(newtype)
@@ -24,6 +24,6 @@ export function InfroCollectMain () {
             )
         }
     }
-    return (<div>{pageSwitch(type)}</div>)
+    return (<>{pageSwitch(type)}</>)
 
 }

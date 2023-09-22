@@ -1,44 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import AuthBox from '../../shared/components/AuthBox';
-import LoginPageHeader from './LoginPageHeader';
-import LoginPageInputs from './LoginPageInputs';
-import LoginPageFooter from './LoginPageFooter';
-import RegisterPageInputs from '../RegisterPage/RegisterPageInputs';
-import RegisterPageFooter from '../RegisterPage/RegisterPageFooter';
-import RegisterPageHeader from '../RegisterPage/RegisterPageHeader';
-import RedirectInfo from '../../shared/components/RedirectInfo';
-import '../authStyles.css';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { validateLoginForm, validateRegisterForm } from '../../shared/utils/validators';
-import { connect } from 'react-redux';
-import { getActions } from '../../store/actions/authActions';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import AuthBox from '../../shared/components/AuthBox'
+import LoginPageHeader from './LoginPageHeader'
+import LoginPageInputs from './LoginPageInputs'
+import LoginPageFooter from './LoginPageFooter'
+import RegisterPageInputs from '../RegisterPage/RegisterPageInputs'
+import RegisterPageFooter from '../RegisterPage/RegisterPageFooter'
+import RegisterPageHeader from '../RegisterPage/RegisterPageHeader'
+import RedirectInfo from '../../shared/components/RedirectInfo'
+import '../authStyles.css'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
+import { validateLoginForm, validateRegisterForm } from '../../shared/utils/validators'
+import { connect } from 'react-redux'
+import { getActions } from '../../store/actions/authActions'
+import { useNavigate } from 'react-router-dom'
 
 import logo from "../../static/VisCatLogo.png"
 
 const theme = createTheme({
-  shape: {
-    borderRadius: 28,
-  },
-});
+    shape: {
+        borderRadius: 28,
+    },
+})
 
 const LoginPage = ({ login, register }) => {
-    const history = useNavigate();
-    const [loginMail, setLoginMail] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
-    const [isLoginFormValid, setIsLoginFormValid] = useState(false);
+    const history = useNavigate()
+    const [loginMail, setLoginMail] = useState('')
+    const [loginPassword, setLoginPassword] = useState('')
+    const [isLoginFormValid, setIsLoginFormValid] = useState(false)
 
-    const [registerMail, setRegisterMail] = useState('');
-    const [registerUsername, setRegisterUsername] = useState('');
-    const [registerPassword, setRegisterPassword] = useState('');
-    const [isRegisterFormValid, setIsRegisterFormValid] = useState(false);
+    const [registerMail, setRegisterMail] = useState('')
+    const [registerUsername, setRegisterUsername] = useState('')
+    const [registerPassword, setRegisterPassword] = useState('')
+    const [isRegisterFormValid, setIsRegisterFormValid] = useState(false)
 
-    const [activeTab, setActiveTab] = useState('signIn');
+    const [activeTab, setActiveTab] = useState('signIn')
 
     useEffect(() => {
-        setIsLoginFormValid(validateLoginForm({ mail: loginMail, password: loginPassword }));
-    }, [loginMail, loginPassword]);
+        setIsLoginFormValid(validateLoginForm({ mail: loginMail, password: loginPassword }))
+    }, [loginMail, loginPassword])
 
     useEffect(() => {
         setIsRegisterFormValid(
@@ -47,34 +47,38 @@ const LoginPage = ({ login, register }) => {
                 username: registerUsername,
                 password: registerPassword,
             })
-        );
-    }, [registerMail, registerUsername, registerPassword]);
+        )
+    }, [registerMail, registerUsername, registerPassword])
 
     const handleLogin = () => {
         const userDetails = {
             mail: loginMail,
             password: loginPassword,
-        };
-        login(userDetails, history);
-    };
+        }
+        login(userDetails, history)
+    }
 
     const handleRegister = () => {
         const userDetails = {
             mail: registerMail,
             username: registerUsername,
             password: registerPassword,
-        };
-        register(userDetails, history);
-    };
+        }
+        register(userDetails, history)
+    }
 
     const handleTabChange = (tab) => {
-        setActiveTab(tab);
+        setActiveTab(tab)
         if (tab === 'signIn') {
-            history("/login");
-        } else {
-            history("/register");
+            history("/login")
         }
-    };
+        else if (tab === 'upload') {
+            history("/upload")
+        }
+        else {
+            history("/register")
+        }
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -94,7 +98,7 @@ const LoginPage = ({ login, register }) => {
                                     />
                                     <LoginPageFooter isFormValid={isLoginFormValid} handleLogin={handleLogin} />
                                 </form>
-                                
+
                             </div>
                         ) : (
                             <div className="form-container sign-up-container">
@@ -148,6 +152,16 @@ const LoginPage = ({ login, register }) => {
                                             redirectHandler={() => handleTabChange('signUp')}
                                         />
                                     </button>
+                                    <p>You are a teacher? Use this bottom.</p>
+                                    <button
+                                        className="ghost"
+                                        id="upload"
+                                        onClick={() => handleTabChange('upload')}
+                                    >
+                                        <RedirectInfo
+                                            redirectText="Upload"
+                                        />
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -155,13 +169,13 @@ const LoginPage = ({ login, register }) => {
                 </div>
             </div>
         </ThemeProvider>
-    );
-};
+    )
+}
 
 const mapActionsToProps = (dispatch) => {
     return {
         ...getActions(dispatch),
-    };
-};
+    }
+}
 
-export default connect(null, mapActionsToProps)(LoginPage);
+export default connect(null, mapActionsToProps)(LoginPage)

@@ -1,23 +1,23 @@
-import React from "react";
-import { Typography, Box } from "@mui/material";
+import React from "react"
+import { Typography, Box } from "@mui/material"
 import logo from '../../static/VisCatLogo.png'
 
 const FriendsTitle = ({ title }) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <img src={logo} alt="Image" width="40" height="40" style={{ marginTop: '3px' }} />
+    <Box sx={{ display: "flex", alignItems: "center", marginBottom: 1.2 }}>
+      <img src={logo} alt="Image" width="60" height="60" style={{ marginTop: '8px' }} />
       <Typography
         sx={{
-          textTransform: "uppercase",
-          color: "#8e9297",
-          fontSize: "2em",
-          marginTop: "10px",
+          fontWeight: "bold",
+          color: "#000000",
+          fontSize: "2.3em",
+          marginTop: 2,
         }}
       >
         {title}
       </Typography>
     </Box>
-  );
-};
+  )
+}
 
-export default FriendsTitle;
+export default FriendsTitle

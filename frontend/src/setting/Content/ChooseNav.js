@@ -1,25 +1,15 @@
-import React, { useState } from "react";
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
-import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
-import Badge from '@mui/material/Badge';
-import QrCode2Icon from '@mui/icons-material/QrCode2';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import QRCodeGenerator from './FindMore/QRCodeGenerator';
-import FindMore from "./FindMore/FindMore";
+import React, { useState } from "react"
+import PropTypes from 'prop-types'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import FindMore from "./FindMore/FindMore"
 
 
 
-function CustomTabPanel(props) {
-    const { children, value, index, ...other } = props;
+function CustomTabPanel (props) {
+    const { children, value, index, ...other } = props
 
     return (
         <div
@@ -35,29 +25,29 @@ function CustomTabPanel(props) {
                 </Box>
             )}
         </div>
-    );
+    )
 }
 
 CustomTabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.number.isRequired,
     value: PropTypes.number.isRequired,
-};
+}
 
-function a11yProps(index) {
+function a11yProps (index) {
     return {
         id: `simple-tab-${index}`,
         'aria-controls': `simple-tabpanel-${index}`,
-    };
+    }
 }
 
-export default function ChooseNav() {
+export default function ChooseNav () {
 
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState(0)
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+        setValue(newValue)
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -72,7 +62,7 @@ export default function ChooseNav() {
                         {...a11yProps(0)}
                         sx={{
                             color: '#013923',
-                            fontWeight: value === 0 ? 'bold' : 'normal', // 设置字体加粗
+                            fontWeight: value === 0 ? 'bold' : 'normal',
                         }}
                     />
                     <Tab
@@ -80,7 +70,7 @@ export default function ChooseNav() {
                         {...a11yProps(1)}
                         sx={{
                             color: '#013923',
-                            fontWeight: value === 1 ? 'bold' : 'normal', // 设置字体加粗
+                            fontWeight: value === 1 ? 'bold' : 'normal',
                         }}
                     />
                     <Tab
@@ -88,7 +78,7 @@ export default function ChooseNav() {
                         {...a11yProps(2)}
                         sx={{
                             color: '#013923',
-                            fontWeight: value === 2 ? 'bold' : 'normal', // 设置字体加粗
+                            fontWeight: value === 2 ? 'bold' : 'normal',
                         }}
                     />
                 </Tabs>
@@ -103,5 +93,5 @@ export default function ChooseNav() {
                 <FindMore />
             </CustomTabPanel>
         </Box>
-    );
+    )
 }

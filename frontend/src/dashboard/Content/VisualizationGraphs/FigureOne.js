@@ -30,8 +30,8 @@ const FigureOne = () => {
         // Generate grid lines
         const gridLines = svg.append('g')
             .attr('class', 'grid-lines')
-        const gridX = d3.range(0, w, 20) // 20是方格宽度
-        const gridY = d3.range(0, h, 20) // 20是方格高度
+        const gridX = d3.range(0, w, 20)
+        const gridY = d3.range(0, h, 20)
         gridLines.selectAll('.grid-line-x')
             .data(gridX)
             .enter().append('line')
@@ -40,7 +40,7 @@ const FigureOne = () => {
             .attr('y1', 0)
             .attr('x2', d => d)
             .attr('y2', h)
-            .style('stroke', '#ccc') // 方格线的颜色
+            .style('stroke', '#ccc')
 
         gridLines.selectAll('.grid-line-y')
             .data(gridY)
@@ -50,30 +50,30 @@ const FigureOne = () => {
             .attr('y1', d => d)
             .attr('x2', w)
             .attr('y2', d => d)
-            .style('stroke', '#ccc') // 方格线的颜色
+            .style('stroke', '#ccc')
 
         // setting axes
         const xAxis = d3.axisBottom(xScale)
             .ticks(data.length)
             .tickFormat(i => i + 1)
-            .tickSize(0) // 隐藏刻度线
-            .tickPadding(10) // 调整刻度文本与轴之间的距离
+            .tickSize(0)
+            .tickPadding(10)
 
         const yAxis = d3.axisLeft(yScale)
             .ticks(5)
-            .tickSize(0) // 隐藏刻度线
-            .tickPadding(10) // 调整刻度文本与轴之间的距离
+            .tickSize(0)
+            .tickPadding(10)
 
         svg.append('g')
             .call(xAxis)
             .attr('transform', `translate(0, ${h})`)
-            .selectAll('text') // 选择所有文本元素
-            .style('fill', '#013923') // 更改文本颜色为白色
+            .selectAll('text')
+            .style('fill', '#013923')
 
         svg.append('g')
             .call(yAxis)
-            .selectAll('text') // 选择所有文本元素
-            .style('fill', '#013923') // 更改文本颜色为白色
+            .selectAll('text')
+            .style('fill', '#013923')
 
 
 
