@@ -4,7 +4,6 @@ import Title from "./NavTitle"
 import { useNavigate } from 'react-router-dom'
 import { Box } from "@mui/material"
 import FunctionSelect from "./FunctionSelect"
-import Filter from "./Filter"
 
 const MainContainer = styled("div")({
   width: "20%",
@@ -21,10 +20,6 @@ const SideBar = ({ onContentChange }) => {
   const handleDashboardClick = () => {
     navigate('/dashboard')
   }
-  const handleDateFilter = (date) => {
-    // Handle the date filtering logic here
-    console.log(date) // For debugging purposes
-  }
 
   return (
     <MainContainer>
@@ -32,11 +27,9 @@ const SideBar = ({ onContentChange }) => {
         onClick={handleDashboardClick}
         sx={{ width: '100%', textAlign: 'left', paddingLeft: '1rem' }}
       >
-        <Title title="Viscat" />
+        <Title title="Go back" />
       </Box>
-
       <FunctionSelect onContentChange={onContentChange} />
-      <Filter onDateChange={handleDateFilter} />
 
     </MainContainer>
   )

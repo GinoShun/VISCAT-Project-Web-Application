@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Badge from '@mui/material/Badge'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import axios from 'axios'
-
+import DownloadIcon from '@mui/icons-material/Download'
 
 
 const handleDownloadCSV = async () => {
@@ -37,7 +37,7 @@ const DownloadCSV = () => {
                     onClick={handleDownloadCSV}
                 >
                     <Badge badgeContent={17} color="error">
-                        <NotificationsIcon
+                        <DownloadIcon
                             sx={{
                                 width: 150,
                                 height: 150,

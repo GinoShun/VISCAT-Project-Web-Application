@@ -29,7 +29,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: '#696969', // 深灰色
+    color: '#696969',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
@@ -53,7 +53,7 @@ export default function SearchBlank () {
                     display: 'flex', alignItems: 'center', overflow: 'auto',
                 }}>
                     <SearchIconWrapper sx={{ marginRight: 20, alignItems: 'center' }}>
-                        <SearchIcon fontSize='large' sx={{ color: '#696969' }} /> {/* 深灰色 */}
+                        <SearchIcon fontSize='large' sx={{ color: '#696969' }} />
                     </SearchIconWrapper>
                     <StyledInputBase
                         sx={{ marginLeft: '15px', fontSize: '1.15rem', alignItems: 'center' }}

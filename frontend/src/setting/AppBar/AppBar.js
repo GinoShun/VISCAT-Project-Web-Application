@@ -80,7 +80,6 @@ export default function PrimarySearchAppBar ({ flag }) {
         }
     }, [])
     const handleClick = () => {
-
         if (temp === '80%') {
             setTemp("100%")
             flag("0")

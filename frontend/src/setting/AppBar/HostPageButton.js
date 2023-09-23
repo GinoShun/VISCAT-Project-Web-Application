@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem"
 import { IconButton } from "@mui/material"
 import { logout } from "../../shared/utils/auth"
 import Avatar from '@mui/material/Avatar'
-import { deepOrange } from '@mui/material/colors'
+import { deepOrange, deepPurple } from '@mui/material/colors'
 
 const HostPageButton = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)

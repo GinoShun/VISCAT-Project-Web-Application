@@ -1,7 +1,10 @@
 import React from 'react'
 import { styled } from "@mui/system"
-import { RawData } from './Rawdata'
-import { DataVisualization } from './DataVisualization'
+import FindMore from '../../dashboard/Content/FindMore/FindMore'
+import { ManageAccounts } from './ManageAccount'
+import { Download } from './Download'
+import { QrCodeManagement } from './QrCodeManagement'
+
 const MainContainer = styled("div")({
   flexGrow: 1,
   backgroundColor: "white",
@@ -9,22 +12,25 @@ const MainContainer = styled("div")({
   display: "flex",
   backgroundColor: "#dadada",
   borderRadius: "10px",
-  right: 0,
   width: "80%",
+  right: 0,
   overflow: "auto",
 })
 const Content = ({ type }) => {
   let content
 
   switch (type) {
-    case 'rawData':
-      content = <RawData />
+    case 'manageAccounts':
+      content = <ManageAccounts />
       break
-    case 'dataVisualization':
-      content = <DataVisualization />
+    case 'download':
+      content = <Download />
+      break
+    case 'qrCodeManagement':
+      content = <QrCodeManagement />
       break
     default:
-      content = <div>Welcome! Please select content from the sidebar.</div>
+      content = <ManageAccounts />
       break
   }
 
