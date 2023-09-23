@@ -1,45 +1,24 @@
-import React from "react"
-import { styled } from "@mui/system"
-import Title from "./NavTitle"
-import { useNavigate } from 'react-router-dom'
-import { Box } from "@mui/material"
-import FunctionSelect from "./FunctionSelect"
-import Filter from "./Filter"
+import React from "react";
+import { styled } from "@mui/system";
+import Title from "./NavTitle";
+import BasicAccordion from "./NavContent";
 
 const MainContainer = styled("div")({
-  width: "20%",
+  width: "30%",
   height: "100%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  backgroundColor: " #ffffff;",
-})
+  backgroundColor: "#dadada",
+});
 
-const SideBar = ({ onContentChange }) => {
-  const navigate = useNavigate()
-
-  const handleDashboardClick = () => {
-    navigate('/dashboard')
-  }
-  const handleDateFilter = (date) => {
-    // Handle the date filtering logic here
-    console.log(date) // For debugging purposes
-  }
-
+const SideBar = () => {
   return (
     <MainContainer>
-      <Box
-        onClick={handleDashboardClick}
-        sx={{ width: '100%', textAlign: 'left', paddingLeft: '1rem' }}
-      >
-        <Title title="Viscat" />
-      </Box>
-
-      <FunctionSelect onContentChange={onContentChange} />
-      <Filter onDateChange={handleDateFilter} />
-
+      <Title title="Vis-Cat" />
+      <BasicAccordion />
     </MainContainer>
-  )
-}
+  );
+};
 
-export default SideBar
+export default SideBar;

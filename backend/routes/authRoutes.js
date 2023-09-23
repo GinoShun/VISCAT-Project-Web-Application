@@ -4,7 +4,6 @@ const authControllers = require("../controllers/auth/authControllers");
 const Joi = require("joi");
 const validator = require("express-joi-validation").createValidator({});
 const auth = require("../middleware/auth");
-// const postChangePassword = require("../controllers/auth/postChange");
 
 const registerSchema = Joi.object({
     username: Joi.string().min(3).max(12).required(),
@@ -15,11 +14,25 @@ const registerSchema = Joi.object({
 const loginSchema = Joi.object({
     password: Joi.string().min(6).max(12).required(),
     mail: Joi.string().email().required(),
+
 });
+
+const changePasswordSchema = Joi.object({
+  mail: Joi.string().email().required(),
+  oldPassword: Joi.string().min(6).max(12).required(),
+  newPassword: Joi.string().min(6).max(12).required(),
+});
+
+const sendMailSchema = Joi.object({
+  mail: Joi.string().email().required(),
+});
+const resetPasswordSchema = Joi.object({
+  oldPassword: Joi.string().min(6).max(12).required(),
+  newPassword: Joi.string().min(6).max(12).required(),
+})
 
 router.post('/register', validator.body(registerSchema), authControllers.controllers.postRegister);
 router.post('/login', validator.body(loginSchema), authControllers.controllers.postLogin);
-// Router for testing export csv
 
 const exportCSV = authControllers.controllers.exportCSV;
 
@@ -41,13 +54,15 @@ router.get('/exportCSV', async (req, res) => {
   }
 });
 
+router.post('/change-password', validator.body(changePasswordSchema), authControllers.controllers.postChange);
+router.post('/send-email', validator.body(sendMailSchema), authControllers.controllers.forgotPassword);
+router.post('/reset-password/:token', validator.body(resetPasswordSchema), authControllers.controllers.forgotPasswordChange);
 
-// 添加修改密码路由
-// router.post('/change-password', auth, validator.body(changePasswordSchema), authControllers.controllers.changePassword);
 
-// // 添加修改密码的实际处理器
+router.post('/studentInfo', authControllers.controllers.postStudentInfo);
+router.post('/teacherInfo', authControllers.controllers.postTeacher);
+router.post('/score', authControllers.controllers.postScore);
 
-// router.post('/post-change-password', auth, postChangePassword);
 router.get("/test", auth, (req, res) => {
     res.send("request passed");
 });
