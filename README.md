@@ -64,38 +64,38 @@ If you encounter a different error than the one above, please proceed with the f
     ├── public
     └── src
         ├── App.css                 //ignore
-        ├── App.js                  //router总管理
+        ├── App.js                  //router main
         ├── Dashboard
         │   └── Dashboard.js        //ignore
-        ├── api.js                   //了解一下, 连接数据库不用动
+        ├── api.js                   
         ├── authPages 
         │   ├── LoginPage
-        │   │   ├── LoginPage.js           //important   login page的总page
-        │   │   ├── LoginPageFooter.js     //important   login中的submit键,方框最下方need an account的重定向 => 从/login 到 /register
+        │   │   ├── LoginPage.js           //important   login page‘s main page
+        │   │   ├── LoginPageFooter.js     //important   login's submit button,方框最下方need an account的重定向 => 从/login 到 /register
         │   │   ├── LoginPageHeader.js     //important
         │   │   └── LoginPageInputs.js     //important
         │   └── RegisterPage
-        │       ├── RegisterPage.js        //important   register page的总page
-        │       ├── RegisterPageFooter.js  //important   register中的submit键,方框最下方already have account的重定向 => 从register 到 /login
+        │       ├── RegisterPage.js        //important   register page‘s main page
+        │       ├── RegisterPageFooter.js  //important   register's submit button,方框最下方already have account的重定向 => 从register 到 /login
         │       └── RegisterPageInputs.js  //important
         ├── index.css              //ignore
         ├── index.js               //ignore
         ├── reportWebVitals.js     //ignore
         ├── serviceWorker.js       //ignore
         ├── shared
-        │   ├── components                   //这个文件夹属于一些login和register通用的模块
+        │   ├── components                   //This folder contains modules that are common to both the login and registration processes.
         │   │   ├── AlertNotification.js    //ignore  
-        │   │   ├── AuthBox.js              //important   login和register的模版页
-        │   │   ├── CustomPrimaryButton.js  //important   login和register中的submit键
-        │   │   ├── InputWithLabel.js       //important   login和register中的输入,一个通用模版,详情看LoginPageInputs.js / RegisterPageInputs.js
+        │   │   ├── AuthBox.js              //important   login and register demo page
+        │   │   ├── CustomPrimaryButton.js  //important   login and register's sumbit button
+        │   │   ├── InputWithLabel.js       //important   The input fields in the login and register sections follow a shared template. Refer to LoginPageInputs.js and RegisterPageInputs.js.
         │   │   └── RedirectInfo.js         //important   方框最下方need an account/already have an account的重定向
         │   └── utils
         │       ├── auth.js                //ignore
-        │       └── validators.js          //ignore   实时判断输入的email格式对不对,密码长度对不对
+        │       └── validators.js          //ignore   Perform real-time validation to check if the entered email format and password length are correct.
         └── store
             ├── actions
             │   ├── alertActions.js        //ignore
-            │   └── authActions.js         //browsing。处理用户登录和注册的逻辑部分,以及成功后重定向到dashboard
+            │   └── authActions.js         //browsing。Handle the logical aspects of user login and registration, and upon successful completion, redirect to the dashboard.
             ├── reducers
             │   ├── alertReducer.js         //ignore
             │   └── authReducer.js         //ignore
@@ -103,11 +103,10 @@ If you encounter a different error than the one above, please proceed with the f
 ```
 [![how to debug faster?!!!](https://i.postimg.cc/gj8MYTXc/2023-09-06-2-13-30.png)](https://postimg.cc/m1Z3jVyK)
 
-### 代码浏览指南
-1. 先从app.js 开始了解现有的router 如/login /register or /dashboard 等
-2. 然后进入loginpage.js, 着重看34行的return, 了解有哪些组件,最后进入 authbox.js 了解login和register page最开始的结构是什么样的,[这里使用了mui的库](https://mui.com/material-ui/react-box/)
-3. 接着回到loginpage.js 从第37行得知这是一个从LoginPageHeader.js 引入的标签,那么进入LoginPageHeader.js检查 代码结构是什么样的,以此类推
-tip: authbox标签下可以使用<div></div>标签,或许可以通过这样的方式实现正式版login page 左右滑动的效果
-主要就是改authpage 文件夹下和shared/component 文件夹下的文件
-可以随便加function,以及标签但尽量不要删除现有的function(不包括html标签等视觉层),因为有一些fucntion会进行validate.
+# Code Browsing Guide
+Start by examining the existing routers in app.js, such as /login, /register, or /dashboard.
+Then, navigate to loginpage.js and pay special attention to the return statement on line 34. Understand which components are present. Finally, delve into authbox.js to understand the initial structure of the login and register pages. The MUI library is used here.
+Return to loginpage.js and, on line 37, you'll see that it imports a tag from LoginPageHeader.js. Go into LoginPageHeader.js to check its code structure, and continue this process.
+Tip: Inside the authbox tag, you can use the <div></div> tags. This may help achieve the desired left-right sliding effect for the final version of the login page.
+The main focus is on modifying files within the authpage folder and shared/component folder. Feel free to add functions and tags, but try not to delete existing functions (excluding HTML tags and visual elements) because some functions are responsible for validation.
 
