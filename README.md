@@ -1,6 +1,6 @@
 # IT-Project
 COMP30022
-[使用教程视频版](https://youtu.be/LpWXKtgOasY)
+[Link for instruction](https://youtu.be/LpWXKtgOasY)
 ### Environment
 - **Node.js Version:** 18.16+ | **Source:** [Node.js Official Website](https://nodejs.org/en)
 - **MongoDB Version:** 6.0.9+ | **Source:** [MongoDB Official Website](https://www.mongodb.com/try/download/community)
@@ -64,38 +64,38 @@ If you encounter a different error than the one above, please proceed with the f
     ├── public
     └── src
         ├── App.css                 //ignore
-        ├── App.js                  //router main
+        ├── App.js                  //router management
         ├── Dashboard
         │   └── Dashboard.js        //ignore
-        ├── api.js                   
+        ├── api.js                   //api
         ├── authPages 
         │   ├── LoginPage
-        │   │   ├── LoginPage.js           //important   login page‘s main page
-        │   │   ├── LoginPageFooter.js     //important   login's submit button,方框最下方need an account的重定向 => 从/login 到 /register
+        │   │   ├── LoginPage.js           //important   login page main
+        │   │   ├── LoginPageFooter.js     //important   login submit button, redirection need an account => from /login to /register
         │   │   ├── LoginPageHeader.js     //important
         │   │   └── LoginPageInputs.js     //important
         │   └── RegisterPage
-        │       ├── RegisterPage.js        //important   register page‘s main page
-        │       ├── RegisterPageFooter.js  //important   register's submit button,方框最下方already have account的重定向 => 从register 到 /login
+        │       ├── RegisterPage.js        //important   register page main
+        │       ├── RegisterPageFooter.js  //important   register submit button, redirection already have account => from /register to /login
         │       └── RegisterPageInputs.js  //important
         ├── index.css              //ignore
         ├── index.js               //ignore
         ├── reportWebVitals.js     //ignore
         ├── serviceWorker.js       //ignore
         ├── shared
-        │   ├── components                   //This folder contains modules that are common to both the login and registration processes.
+        │   ├── components                   //common module for login and register
         │   │   ├── AlertNotification.js    //ignore  
-        │   │   ├── AuthBox.js              //important   login and register demo page
-        │   │   ├── CustomPrimaryButton.js  //important   login and register's sumbit button
-        │   │   ├── InputWithLabel.js       //important   The input fields in the login and register sections follow a shared template. Refer to LoginPageInputs.js and RegisterPageInputs.js.
-        │   │   └── RedirectInfo.js         //important   方框最下方need an account/already have an account的重定向
+        │   │   ├── AuthBox.js              //important   page frame
+        │   │   ├── CustomPrimaryButton.js  //important   submit button
+        │   │   ├── InputWithLabel.js       //important   input module, read more in LoginPageInputs.js / RegisterPageInputs.js
+        │   │   └── RedirectInfo.js         //important   buttom redirection for need an account/already have an account
         │   └── utils
         │       ├── auth.js                //ignore
-        │       └── validators.js          //ignore   Perform real-time validation to check if the entered email format and password length are correct.
+        │       └── validators.js          //ignore   check email and password format
         └── store
             ├── actions
             │   ├── alertActions.js        //ignore
-            │   └── authActions.js         //browsing。Handle the logical aspects of user login and registration, and upon successful completion, redirect to the dashboard.
+            │   └── authActions.js         //browsing, deal with login and register and redirect to dashboard after success
             ├── reducers
             │   ├── alertReducer.js         //ignore
             │   └── authReducer.js         //ignore
@@ -103,10 +103,12 @@ If you encounter a different error than the one above, please proceed with the f
 ```
 [![how to debug faster?!!!](https://i.postimg.cc/gj8MYTXc/2023-09-06-2-13-30.png)](https://postimg.cc/m1Z3jVyK)
 
-# Code Browsing Guide
-Start by examining the existing routers in app.js, such as /login, /register, or /dashboard.
-Then, navigate to loginpage.js and pay special attention to the return statement on line 34. Understand which components are present. Finally, delve into authbox.js to understand the initial structure of the login and register pages. The MUI library is used here.
-Return to loginpage.js and, on line 37, you'll see that it imports a tag from LoginPageHeader.js. Go into LoginPageHeader.js to check its code structure, and continue this process.
-Tip: Inside the authbox tag, you can use the <div></div> tags. This may help achieve the desired left-right sliding effect for the final version of the login page.
-The main focus is on modifying files within the authpage folder and shared/component folder. Feel free to add functions and tags, but try not to delete existing functions (excluding HTML tags and visual elements) because some functions are responsible for validation.
+### Instruction for reading code
+1. Start by examining the existing routers in app.js, such as /login, /register, or /dashboard.
+2. Then, go into loginpage.js and pay special attention to the return statement on line 34. Understand which components are present there. Finally, navigate to authbox.js to understand the initial structure of the login and register pages. The code here uses the MUI library.
+3. Next, return to loginpage.js. From line 37, you can see that it's importing a tag from LoginPageHeader.js. Go into LoginPageHeader.js to inspect its code structure, and so on.
+
+Tips: Within the authbox tag, you can use <div></div> tags, which might help achieve the left-right sliding effect for the formal version of the login page.
+
+The main focus is on making changes in the authpage folder and the shared/component folder. You are free to add functions and tags, but try to avoid deleting existing functions (excluding HTML tags or visual elements) because some functions are responsible for validation.
 
