@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import QrCodeIcon from '@mui/icons-material/QrCode'
 import DownloadIcon from '@mui/icons-material/Download'
+import KeyIcon from '@mui/icons-material/Key'
 
 export default function FunctionSelect ({ onContentChange }) {
     const [selectedButton, setSelectedButton] = React.useState('one')
@@ -73,6 +74,15 @@ export default function FunctionSelect ({ onContentChange }) {
                     <QrCodeIcon style={{ marginRight: '8px' }} />
                     QrCode management
                 </Button>
+            </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                    marginBottom: '10px',
+                    width: '90%',
+                }}
+            >
             </Box>
             <Box sx={{ width: '100%', marginBottom: '10px' }}>
                 <Divider sx={{ borderTopWidth: '1px', marginLeft: 3, marginRight: 3 }} />

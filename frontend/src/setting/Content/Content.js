@@ -4,7 +4,6 @@ import FindMore from '../../dashboard/Content/FindMore/FindMore'
 import { ManageAccounts } from './ManageAccount'
 import { Download } from './Download'
 import { QrCodeManagement } from './QrCodeManagement'
-
 const MainContainer = styled("div")({
   flexGrow: 1,
   backgroundColor: "white",
@@ -18,7 +17,6 @@ const MainContainer = styled("div")({
 })
 const Content = ({ type }) => {
   let content
-
   switch (type) {
     case 'manageAccounts':
       content = <ManageAccounts />

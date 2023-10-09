@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const testScoreSchema = new mongoose.Schema({
-    studentId: Number,
-    testScore: Number,
+const scoreSchema = new mongoose.Schema({
+    studentId: { type: String },
+    testScore: { type: String },
 });
 
-module.exports = mongoose.model("score", testScoreSchema);
+module.exports = mongoose.model("score", scoreSchema);

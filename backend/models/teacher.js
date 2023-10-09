@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const teacherSchema = new mongoose.Schema({
-    name: String,
-    class: Number,
-    grade: String,
+    name: { type: String },
+    classnum: { type: String },
+    grade: { type: String },
 });
 
 module.exports = mongoose.model("teacher", teacherSchema);

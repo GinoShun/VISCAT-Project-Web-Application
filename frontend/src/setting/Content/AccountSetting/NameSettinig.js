@@ -1,0 +1,67 @@
+import React, { useState } from "react"
+import ListItem from '@mui/material/ListItem'
+import ListItemAvatar from '@mui/material/ListItemAvatar'
+import ListItemText from '@mui/material/ListItemText'
+import EditIcon from '@mui/icons-material/Edit'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+
+export const NameSetting = ({ initialUsername }) => {
+    const [open, setOpen] = useState(false)
+    const [username, setUsername] = useState(initialUsername)
+
+    return (
+        <>
+            <ListItem alignItems="center" button onClick={() => setOpen(true)}>
+                <ListItemAvatar sx={{ marginRight: '60px' }}>
+                    <ListItemText primary="Name" />
+                </ListItemAvatar>
+                <ListItemText primary={username} />
+                <EditIcon sx={{ right: 0 }} />
+            </ListItem>
+
+            <Dialog open={open} onClose={() => setOpen(false)}>
+                <DialogTitle>Edit Username</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Please enter your new username.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        label="Username"
+                        type="text"
+                        fullWidth
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpen(false)} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={() => {
+                        setOpen(false)
+                        let userInfo = localStorage.getItem('user')
+                        if (userInfo) {
+                            userInfo = JSON.parse(userInfo)
+                            userInfo.username = username
+                            localStorage.setItem('user', JSON.stringify(userInfo))
+                        } else {
+                            const updatedUserInfo = { username: username }
+                            localStorage.setItem('user', JSON.stringify(updatedUserInfo))
+                        }
+
+                    }} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </>
+    )
+}

@@ -1,20 +1,20 @@
-const User = require("../../models/user");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const User = require("../../models/user")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 const postRegister = async (req, res) => {
     try {
-        const { username, mail, password } = req.body;
+        const { username, mail, password } = req.body
 
         //防止用户已经存在的判断
-        const userExists = await User.exists({ mail: mail.toLowerCase() });
+        const userExists = await User.exists({ mail: mail.toLowerCase() })
 
         if (userExists) {
-            return res.status(409).send("E-mail already in use from postRegister.js");
+            return res.status(409).send("E-mail already in use from postRegister.js")
         }
 
         // 加密密码 用hash
-        const encryptedPassword = await bcrypt.hash(password, 10);
+        const encryptedPassword = await bcrypt.hash(password, 10)
 
         //如果以上都通过入库
         const user = await User.create({
@@ -32,7 +32,7 @@ const postRegister = async (req, res) => {
             {
                 expiresIn: "24h",
             }
-        );
+        )
 
 
         res.status(201).json({
@@ -43,8 +43,8 @@ const postRegister = async (req, res) => {
             }
         })
     } catch (err) {
-        return res.status(500).send('Error. From postRegister.js');
+        return res.status(500).send('Error. From postRegister.js')
     }
-};
+}
 
-module.exports = postRegister;
+module.exports = postRegister

@@ -1,9 +1,10 @@
-import React from 'react'
-import CustomPrimaryButton from '../../shared/components/CustomPrimaryButton'
-import RedirectInfo from '../../shared/components/RedirectInfo'
-import '../authStyles.css'
-import { useNavigate } from "react-router-dom"
-import { Tooltip, styled, Link } from '@mui/material'
+import React, { useState } from 'react';
+import CustomPrimaryButton from '../../shared/components/CustomPrimaryButton';
+import RedirectInfo from '../../shared/components/RedirectInfo';
+import '../authStyles.css';
+import { useNavigate } from "react-router-dom";
+import { Tooltip, styled, Link } from '@mui/material';
+import Forgot from './Forgot/Forgot';
 
 
 const StyledButton = styled('button')({
@@ -27,24 +28,23 @@ const StyledButton = styled('button')({
         backgroundColor: 'transparent',
         borderColor: '#ffffff',
     },
-})
+});
 
 
 const getFormNotValidMessage = () => {
-    return "Enter correct email and password"
+    return "Enter correct email and password";
 }
 
 const getFormValidMessage = () => {
-    return "Press to log in"
+    return "Press to log in";
 }
 
 const LoginPageFooter = ({ handleLogin, isFormValid }) => {
+    const [showForgot, setShowForgot] = useState(false); // 添加状态来控制 Forgot 组件的显示
 
     return (
         <>
-            <Link href="#" variant="body2">
-                Forgot your password?
-            </Link>
+            <Forgot />
             <Tooltip
                 title={!isFormValid ? getFormNotValidMessage() : getFormValidMessage()}
             >
@@ -56,11 +56,10 @@ const LoginPageFooter = ({ handleLogin, isFormValid }) => {
                     >
                         Log in
                     </StyledButton>
-
                 </span>
             </Tooltip>
         </>
-    )
-}
+    );
+};
 
-export default LoginPageFooter
+export default LoginPageFooter;
