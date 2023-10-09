@@ -10,11 +10,18 @@ export const validateRegisterForm = ({ mail, password, username }) => {
         validateMail(mail) && validatePassword(password) && validateUsername(username)
     );
 }
+
+export const validateChangeForm = ({mail, oldPassword, newPassword}) => {
+    return (
+        validateMail(mail) && validatePassword(oldPassword) && validatePassword(newPassword)
+    )
+}
+
 const validatePassword = (password) => {
     return password.length > 6 && password.length < 12;
 }
 
-export const validateMail = (mail) => {
+const validateMail = (mail) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(mail);
 }

@@ -1,6 +1,6 @@
 # IT-Project
 COMP30022
-[使用教程视频版](https://youtu.be/LpWXKtgOasY)
+[Link for instruction](https://youtu.be/LpWXKtgOasY)
 ### Environment
 - **Node.js Version:** 18.16+ | **Source:** [Node.js Official Website](https://nodejs.org/en)
 - **MongoDB Version:** 6.0.9+ | **Source:** [MongoDB Official Website](https://www.mongodb.com/try/download/community)
@@ -64,38 +64,38 @@ If you encounter a different error than the one above, please proceed with the f
     ├── public
     └── src
         ├── App.css                 //ignore
-        ├── App.js                  //router总管理
+        ├── App.js                  //router management
         ├── Dashboard
         │   └── Dashboard.js        //ignore
-        ├── api.js                   //了解一下, 连接数据库不用动
+        ├── api.js                   //api
         ├── authPages 
         │   ├── LoginPage
-        │   │   ├── LoginPage.js           //important   login page的总page
-        │   │   ├── LoginPageFooter.js     //important   login中的submit键,方框最下方need an account的重定向 => 从/login 到 /register
+        │   │   ├── LoginPage.js           //important   login page main
+        │   │   ├── LoginPageFooter.js     //important   login submit button, redirection need an account => from /login to /register
         │   │   ├── LoginPageHeader.js     //important
         │   │   └── LoginPageInputs.js     //important
         │   └── RegisterPage
-        │       ├── RegisterPage.js        //important   register page的总page
-        │       ├── RegisterPageFooter.js  //important   register中的submit键,方框最下方already have account的重定向 => 从register 到 /login
+        │       ├── RegisterPage.js        //important   register page main
+        │       ├── RegisterPageFooter.js  //important   register submit button, redirection already have account => from /register to /login
         │       └── RegisterPageInputs.js  //important
         ├── index.css              //ignore
         ├── index.js               //ignore
         ├── reportWebVitals.js     //ignore
         ├── serviceWorker.js       //ignore
         ├── shared
-        │   ├── components                   //这个文件夹属于一些login和register通用的模块
+        │   ├── components                   //common module for login and register
         │   │   ├── AlertNotification.js    //ignore  
-        │   │   ├── AuthBox.js              //important   login和register的模版页
-        │   │   ├── CustomPrimaryButton.js  //important   login和register中的submit键
-        │   │   ├── InputWithLabel.js       //important   login和register中的输入,一个通用模版,详情看LoginPageInputs.js / RegisterPageInputs.js
-        │   │   └── RedirectInfo.js         //important   方框最下方need an account/already have an account的重定向
+        │   │   ├── AuthBox.js              //important   page frame
+        │   │   ├── CustomPrimaryButton.js  //important   submit button
+        │   │   ├── InputWithLabel.js       //important   input module, read more in LoginPageInputs.js / RegisterPageInputs.js
+        │   │   └── RedirectInfo.js         //important   buttom redirection for need an account/already have an account
         │   └── utils
         │       ├── auth.js                //ignore
-        │       └── validators.js          //ignore   实时判断输入的email格式对不对,密码长度对不对
+        │       └── validators.js          //ignore   check email and password format
         └── store
             ├── actions
             │   ├── alertActions.js        //ignore
-            │   └── authActions.js         //browsing。处理用户登录和注册的逻辑部分,以及成功后重定向到dashboard
+            │   └── authActions.js         //browsing, deal with login and register and redirect to dashboard after success
             ├── reducers
             │   ├── alertReducer.js         //ignore
             │   └── authReducer.js         //ignore
@@ -103,11 +103,12 @@ If you encounter a different error than the one above, please proceed with the f
 ```
 [![how to debug faster?!!!](https://i.postimg.cc/gj8MYTXc/2023-09-06-2-13-30.png)](https://postimg.cc/m1Z3jVyK)
 
-### 代码浏览指南
-1. 先从app.js 开始了解现有的router 如/login /register or /dashboard 等
-2. 然后进入loginpage.js, 着重看34行的return, 了解有哪些组件,最后进入 authbox.js 了解login和register page最开始的结构是什么样的,[这里使用了mui的库](https://mui.com/material-ui/react-box/)
-3. 接着回到loginpage.js 从第37行得知这是一个从LoginPageHeader.js 引入的标签,那么进入LoginPageHeader.js检查 代码结构是什么样的,以此类推
-tip: authbox标签下可以使用<div></div>标签,或许可以通过这样的方式实现正式版login page 左右滑动的效果
-主要就是改authpage 文件夹下和shared/component 文件夹下的文件
-可以随便加function,以及标签但尽量不要删除现有的function(不包括html标签等视觉层),因为有一些fucntion会进行validate.
+### Instruction for reading code
+1. Start by examining the existing routers in app.js, such as /login, /register, or /dashboard.
+2. Then, go into loginpage.js and pay special attention to the return statement on line 34. Understand which components are present there. Finally, navigate to authbox.js to understand the initial structure of the login and register pages. The code here uses the MUI library.
+3. Next, return to loginpage.js. From line 37, you can see that it's importing a tag from LoginPageHeader.js. Go into LoginPageHeader.js to inspect its code structure, and so on.
+
+Tips: Within the authbox tag, you can use <div></div> tags, which might help achieve the left-right sliding effect for the formal version of the login page.
+
+The main focus is on making changes in the authpage folder and the shared/component folder. You are free to add functions and tags, but try to avoid deleting existing functions (excluding HTML tags or visual elements) because some functions are responsible for validation.
 

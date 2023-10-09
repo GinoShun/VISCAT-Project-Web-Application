@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AuthBox from '../../shared/components/AuthBox';
+import '../auth"css';
 import { Typography } from '@mui/material';
 import RegisterPageInputs from './RegisterPageInputs';
 import RegisterPageFooter from './RegisterPageFooter';
@@ -38,7 +39,6 @@ const RegisterPage = ({ register }) => {
             })
         )
     }, [mail, username, password, setIsFormValid]);
-    // change here
     return (
         <AuthBox>
             <Typography variant='h5' sx={{ color: "white" }}>

@@ -2,8 +2,6 @@ import React from 'react';
 import Box from "@mui/material/Box";
 import { styled } from '@mui/system';
 
-
-// whole page
 const BoxWrapper = styled("div")({
     width: "100%",
     height: "100vh",
@@ -13,11 +11,9 @@ const BoxWrapper = styled("div")({
     background: "#ffc8dd",
 })
 
-// the box
 const AuthBox = (props) => {
     return (
         <BoxWrapper>
-            {/* box 的参数 */}
             <Box
                 sx={{
                     width: 700,
@@ -30,8 +26,6 @@ const AuthBox = (props) => {
                     padding: "25px"
                 }}
             >
-                {/* receipt data from LoginPage.js line34中的return */}
-                {/* 或者registerPage.js line42 中的return */}
                 {props.children}
             </Box>
         </BoxWrapper>

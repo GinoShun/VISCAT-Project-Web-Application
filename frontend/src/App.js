@@ -1,27 +1,32 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import LoginPage from './authPages/LoginPage/LoginPage';
-import RegisterPage from './authPages/RegisterPage/RegisterPage';
-import Dashboard from './Dashboard/Dashboard';
-import AlertNotification from './shared/components/AlertNotification';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import LoginPage from './authPages/LoginPage/LoginPage'
+import AlertNotification from './shared/components/AlertNotification'
+import { Dashboard } from './dashboard/dashboard'
+import { StudentInfoCollect } from './StudentInfoCollect/StudentInfoCollect'
+import { Setting } from './setting/setting'
+import './App.css'
+import ChangeP from './dashboard/Content/ChangeP/ChangeP'
+import RemakePassword from './dashboard/Content/FindMore/RemakePassword'
 
-import './App.css';
-
-
-function App() {
+function App () {
   return (
     <>
-    <Router>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>
-    </Router>
-    <AlertNotification />
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<LoginPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/changeP" element={<ChangeP />} />
+          <Route path="/reset-password/:token" element={<RemakePassword />} />
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="/upload" element={<StudentInfoCollect />} />
+          <Route path="/settings" element={<Setting />} />
+        </Routes>
+      </Router>
+      <AlertNotification />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
