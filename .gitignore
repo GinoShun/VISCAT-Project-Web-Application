@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-# ignore environment
-=======
 # ignore node_modules environment
->>>>>>> main
 frontend/node_modules
