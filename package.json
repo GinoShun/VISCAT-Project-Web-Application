@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "name": "log_in",
   "version": "0.1.0",
   "private": true,
@@ -37,5 +38,9 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+=======
+  "dependencies": {
+    "@csstools/normalize.css": "^12.0.0"
+>>>>>>> Stashed changes
   }
 }

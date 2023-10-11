@@ -3,7 +3,7 @@ import InputWithLabel from '../../shared/components/InputWithLabel';
 
 import { TextField } from "@mui/material";
 
-const RegisterPageInputs = ({ mail, setMail, username, setUsername, password, setPassword }) => {
+const RegisterPageInputs = ({ mail, setMail, username, setUsername, password, setPassword, Token, setToken }) => {
     return (
         <>
             <TextField
@@ -33,6 +33,15 @@ const RegisterPageInputs = ({ mail, setMail, username, setUsername, password, se
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+            />
+            <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                label="Token"
+                name="Token"
+                value={Token}
+                onChange={(e) => setToken(e.target.value)}
             />
         </>
     );
