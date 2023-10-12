@@ -1,14 +1,14 @@
-const postLogin = require("./postLogin")
-const postRegister = require("./postRegister")
-const exportCSV = require("./exportCSV")
-const postChange = require("./postChange")
-const forgotPassword = require("./forgotPassword")
-const forgotPasswordChange = require('./forgotPasswordChange')
+const postLogin = require("./postLogin");
+const postRegister = require("./postRegister");
+const exportCSV = require("./exportCSV");
+const postChange = require("./postChange");
+const forgotPassword = require("./forgotPassword");
+const forgotPasswordChange = require('./forgotPasswordChange');
 
-const postStudentInfo = require('./postStudentInfo')
-const postTeacher = require('./postTeacher')
-const postScore = require('./postScore')
-const getCombinedData = require('./getCombinedData')
+const postStudentInfo = require('./postStudentInfo');
+const postTeacher = require('./postTeacher');
+const postScore = require('./postScore');
+
 exports.controllers = {
     postLogin,
     postRegister,
@@ -19,7 +19,6 @@ exports.controllers = {
     postStudentInfo,
     postTeacher,
     postScore,
-    getCombinedData,
 };
 
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import logo from './image/VisCatLogo.png'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
@@ -54,6 +55,35 @@ export function TeacherDataUploadPage ({ changePage }) {
             alignItems: 'center',
         }
     }
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [schoolName, setSchoolName] = useState("")
+    const [schoolPosition, setSchoolPosition] = useState("")
+    const [classGrade, setClassGrade] = useState("")
+    const [classNumber, setClassNumber] = useState("")
+
+    const handleSubmit = () => {
+        const currentData = {
+            firstName,
+            lastName,
+            schoolName,
+            schoolPosition,
+            classGrade,
+            classNumber
+        }
+        // Here obtain the final data.
+        console.log(currentData)
+
+        // Optional: Clear input fields after submitting
+        setFirstName("")
+        setLastName("")
+        setSchoolName("")
+        setSchoolPosition("")
+        setClassGrade("")
+        setClassNumber("")
+
+        changePage('studentInfo')
+    }
     return (
         <Container style={styles.mainPage}>
             <Container fixed maxWidth="sm" style={styles.uploadArea}>
@@ -81,8 +111,43 @@ export function TeacherDataUploadPage ({ changePage }) {
                         marginTop: '40px',
                     }}
                 >
-                    <TextField id="standard-basic" label="Your FirstName" variant="standard" />
-                    <TextField id="standard-basic" label="Your LastName" variant="standard" />
+                    <TextField
+                        variant="standard"
+                        label="Your FirstName"
+                        value={firstName}
+                        onChange={e => setFirstName(e.target.value)} // 4. 使用onChange事件处理程序来更新每个输入框的状态
+                    />
+                    <TextField
+                        variant="standard"
+                        label="Your LastName"
+                        value={lastName}
+                        onChange={e => setLastName(e.target.value)}
+                    />          </Box>
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': { m: 2, width: '30ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        margin: '30px',
+                    }}
+                ><TextField
+                        variant="standard"
+                        label="School Name"
+                        value={schoolName}
+                        onChange={e => setSchoolName(e.target.value)}
+                    />
+                    <TextField
+                        variant="standard"
+                        label="School Position"
+                        value={schoolPosition}
+                        onChange={e => setSchoolPosition(e.target.value)}
+                    />
                 </Box>
                 <Box
                     component="form"
@@ -98,25 +163,18 @@ export function TeacherDataUploadPage ({ changePage }) {
                         margin: '30px',
                     }}
                 >
-                    <TextField id="standard-basic" label="School Name" variant="standard" />
-                    <TextField id="standard-basic" label="School Position" variant="standard" />
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 2, width: '30ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        margin: '30px',
-                    }}
-                >
-                    <TextField id="standard-basic" label="Class's grade " variant="standard" />
-                    <TextField id="standard-basic" label="Class number" variant="standard" />
+                    <TextField
+                        variant="standard"
+                        label="Class's grade"
+                        value={classGrade}
+                        onChange={e => setClassGrade(e.target.value)}
+                    />
+                    <TextField
+                        variant="standard"
+                        label="Class number"
+                        value={classNumber}
+                        onChange={e => setClassNumber(e.target.value)}
+                    />
                 </Box>
                 <div style={{
                     display: 'flex',
@@ -125,15 +183,18 @@ export function TeacherDataUploadPage ({ changePage }) {
                     marginTop: '40px',
                 }}>
                     <Tooltip title="Click to go next">
-                        <IconButton onClick={() => changePage('studentInfo')} ><ArrowForwardIosIcon sx={{ fontSize: 40, color: blue[500] }} style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }} />
+                        <IconButton onClick={handleSubmit}>
+                            <ArrowForwardIosIcon
+                                sx={{ fontSize: 40, color: blue[500] }}
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            />
                         </IconButton>
                     </Tooltip>
                 </div>
-
             </Container>
         </Container>
     )

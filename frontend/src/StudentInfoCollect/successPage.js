@@ -10,7 +10,7 @@ import Box from '@mui/material/Box'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { green } from '@mui/material/colors'
 import { useNavigate } from 'react-router-dom'
-
+import QRCodeGenerator from './QRCodeGenerator'
 export function SuccessPage ({ changePage }) {
     const isMobile = useMediaQuery('(max-width:600px)')
     const navigate = useNavigate()
@@ -88,6 +88,9 @@ export function SuccessPage ({ changePage }) {
                         </IconButton>
                     </Tooltip>
                 </div>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+                    <QRCodeGenerator />
+                </Box>
 
             </div>
         </div>
