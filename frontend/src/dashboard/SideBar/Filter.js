@@ -34,31 +34,35 @@ const DateRangeFilter = ({ onDataFiltered }) => {
 
     // only for test purpose, get actual data from backend
     const filterData = (start, end) => {
-        readExcel('/Users/sunjinuo/Desktop/IT/Simulation Data for Software VisCAT.xlsv', start, end);
+        const filePath = '/Users/sunjinuo/Desktop/IT/Simulation Data for Software VisCAT.xlsv';
+        const file = new File([filePath], "Simulation Data for Software VisCAT.xlsv");
+        readExcel(file, start, end);
     };
     
     // read and extract filtered data
-    const readExcel = (filePath, start, end) => {
-        fetch(filePath).then(r => r.arrayBuffer()).then(d => {
-          const data = new Uint8Array(d);
-          const workbook = XLSX.read(data, { type: 'array' });
-          const sheet = workbook.Sheets[workbook.SheetNames[0]];
-          // convert to csv to ensure code reuse
-          const csvData = XLSX.utils.sheet_to_csv(sheet);
+    const readExcel = (file, start, end) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const data = e.target.result;
+            const workbook = XLSX.read(data, { type: 'binary' });
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            // convert to csv to ensure code reuse
+            const csvData = XLSX.utils.sheet_to_csv(sheet);
     
-          Papa.parse(csvData, {
-            header: true,
-            dynamicTyping: true,
-            complete: function (results) {
-              const filteredData = results.data.filter((item) => {
-                const itemDate = new Date(item.date);
-                return itemDate >= start && itemDate <= end;
-              });
-              onDataFiltered(filteredData);
-            }
-          });
-        });
-    };
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function (results) {
+                    const filteredData = results.data.filter((item) => {
+                        const itemDate = new Date(item.date);
+                        return itemDate >= start && itemDate <= end;
+                    });
+                    onDataFiltered(filteredData);
+                }
+            });
+        };
+        reader.readAsBinaryString(file);
+    }
 
     // UI
     return (
