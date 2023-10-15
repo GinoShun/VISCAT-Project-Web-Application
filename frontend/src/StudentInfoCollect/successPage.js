@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import logo from './image/VisCatLogo.png'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Button } from '@mui/material'
@@ -10,8 +10,57 @@ import Box from '@mui/material/Box'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { green } from '@mui/material/colors'
 import { useNavigate } from 'react-router-dom'
+import QRCodeGenerator from './QRCodeGenerator'
+import axios from 'axios'
 
 export function SuccessPage ({ changePage }) {
+    const [studentIds, setStudentIds] = useState([]);
+    const [testScores, setTestScores] = useState([]);
+    const [nameArray, setNameArray] = useState([]);
+    const [combinedData, setCombinedData] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:5002/api/auth/getScore')
+            .then((res) => {
+                if (res.data && res.data.scores) {
+                    const receivedData = res.data.scores;
+
+                    // 获取 studentId 和 testScore 分别存储在数组中
+                    const studentIdArray = receivedData.map((score) => score.studentId);
+                    const testScoreArray = receivedData.map((score) => score.testScore);
+
+                    setStudentIds(studentIdArray);
+                    setTestScores(testScoreArray);
+                }
+            })
+            .catch((err) => console.log(err));
+    }, []);
+    useEffect(() => {
+        axios
+            .get('http://localhost:5002/api/auth/getStudentInfo')
+            .then((res) => {
+                if (res.data && res.data.students) {
+                    const receivedData = res.data.students;
+
+                    // 获取名字存储在数组中
+                    const nameArray = receivedData.map((student) => student.name);
+
+                    setNameArray(nameArray);
+                }
+            })
+            .catch((err) => console.log(err));
+    }, []);
+    useEffect(() => {
+        // 当 studentIds、testScores 和 nameArray 改变时，计算 combinedData
+        if (studentIds.length > 0 && testScores.length > 0 && nameArray.length > 0) {
+            const combined = studentIds.map((studentId, index) => `${nameArray[index]}:${testScores[index]}`);
+            setCombinedData(combined);
+        }
+    }, [studentIds, testScores, nameArray]);
+    
+
+
     const isMobile = useMediaQuery('(max-width:600px)')
     const navigate = useNavigate()
     const handleBackToLogin = () => {
@@ -88,6 +137,9 @@ export function SuccessPage ({ changePage }) {
                         </IconButton>
                     </Tooltip>
                 </div>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+                    <QRCodeGenerator text={combinedData.join(',')}/>
+                </Box>
 
             </div>
         </div>

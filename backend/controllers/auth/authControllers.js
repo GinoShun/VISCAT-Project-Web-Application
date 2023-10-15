@@ -9,6 +9,10 @@ const postStudentInfo = require('./postStudentInfo');
 const postTeacher = require('./postTeacher');
 const postScore = require('./postScore');
 
+const getStudentInfo = require('./getStudentInfo');
+const deleteStudentInfo = require('./deleteStudentInfo');
+const getScore = require('./getScore');
+
 exports.controllers = {
     postLogin,
     postRegister,
@@ -19,6 +23,9 @@ exports.controllers = {
     postStudentInfo,
     postTeacher,
     postScore,
+    getStudentInfo,
+    deleteStudentInfo,
+    getScore,
 };
 
 

@@ -14,6 +14,7 @@ import SearchBlank from './SearchBlank'
 import Tooltip from '@mui/material/Tooltip'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { useNavigate } from 'react-router-dom'
+import DownloadCSV from '../Content/FindMore/DownloadCSV'
 
 const LeftContainer = styled("div")({
     display: "flex",
@@ -182,6 +183,7 @@ export default function PrimarySearchAppBar ({ flag }) {
                             <MenuIcon sx={{ width: '100%', height: '100%', color: '#696969' }} />
                         </IconButton>
                         <SearchBlank />
+                        <DownloadCSV />
                     </LeftContainer>
                     <RightContainer sx={{ display: { xs: 'none', md: 'flex' } }}>
 
@@ -207,6 +209,7 @@ export default function PrimarySearchAppBar ({ flag }) {
                             <MoreIcon sx={{ width: '100%', height: '100%', color: '#696969' }} />
                         </IconButton>
                     </Box>
+
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}

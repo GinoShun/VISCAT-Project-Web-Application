@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const postRegister = async (req, res) => {
     try {
-        const { username, mail, password } = req.body;
+        const { username, mail, password, conPassword } = req.body;
 
         //防止用户已经存在的判断
         const userExists = await User.exists({ mail: mail.toLowerCase() });
@@ -12,6 +12,10 @@ const postRegister = async (req, res) => {
         if (userExists) {
             return res.status(409).send("E-mail already in use from postRegister.js");
         }
+        if (password !== conPassword) {
+            return res.status(409).send("Passwords do not match.");
+        }
+        
 
         // 加密密码 用hash
         const encryptedPassword = await bcrypt.hash(password, 10);

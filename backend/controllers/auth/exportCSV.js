@@ -8,29 +8,35 @@ const User = require("../../models/user");
 
 const exportCSV = async (req, res) => {
     try {
+        // const user = await User.find();
+        // const fields = ['mail', 'username', 'password'];
+        // const json2csvParser = new json2csv({ fields });
+        // const csvData = json2csvParser.parse(user);
+        // return csvData; 
 
         const student = await Student.find();
         const score = await Score.find();
 
         const studentMap = new Map();
-        student.forEach(studentData => {
-            studentMap.set(studentData.studentId, studentData);
+        student.forEach(student => {
+            studentMap.set(student.studentId, student);
         });
 
         // 合并数据
-        const mergedData = score.map(scoreData => ({
-            studentId: scoreData.studentId,
-            testScore: scoreData.testScore,
-            name: studentMap.get(scoreData.studentId).name,
-            dob: studentMap.get(scoreData.studentId).dob,
-            age: studentMap.get(scoreData.studentId).age,
-            classnum: studentMap.get(scoreData.studentId).classnum,
+        const mergedData = score.map(score => ({
+            studentId: score.studentId,
+            testScore: score.testScore,
+            name: studentMap.get(score.studentId).name,
+            dob: studentMap.get(score.studentId).dob,
+            age: studentMap.get(score.studentId).age,
+            classnum: studentMap.get(score.studentId).classnum,
         }));
 
-        const fields = ['studentId', 'testScore', 'name', 'dob', 'age', 'classnum'];
+        const fields = ["studentId", "testScore", "name", "dob", "age", "classnum"];
         const json2csvParser = new json2csv({ fields });
         const csvData = json2csvParser.parse(mergedData);
-        return csvData; // 返回 CSV 数据
+        return csvData; 
+        // return csv
 
 
     } catch (err) {

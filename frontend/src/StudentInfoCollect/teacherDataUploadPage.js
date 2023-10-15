@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import logo from './image/VisCatLogo.png'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
@@ -10,8 +10,38 @@ import { useMediaQuery } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import { blue } from '@mui/material/colors'
+import { useNavigate } from 'react-router-dom'
+import { connect } from "react-redux";
+import { getActions } from '../store/actions/alertActions';
+import axios from 'axios';
 
-export function TeacherDataUploadPage ({ changePage }) {
+const TeacherDataUploadPage = ({ changePage}) => {
+    const history = useNavigate()
+    const [fullName, setFullName] = useState('');
+    const [school, setSchool] = useState('');
+    const [grade, setGrade] = useState('');
+    const [classnum, setClassnum] = useState('');
+
+
+    const handleTeacher = () => {
+        const teacherInfo = {
+            fullName, 
+            school,  
+            grade,     
+            classnum 
+        };
+    
+        // 执行提交操作
+        axios.post('http://localhost:5002/api/auth/teacherInfo', teacherInfo, { withCredentials: true })
+            .then((res) => {
+                if (res.data.Status === 'Success') {
+                    history('/success');
+                }
+            })
+            .catch((err) => console.log(err));
+    };
+
+
     const isMobile = useMediaQuery('(max-width:600px)')
     const styles = {
         mainPage: {
@@ -81,8 +111,21 @@ export function TeacherDataUploadPage ({ changePage }) {
                         marginTop: '40px',
                     }}
                 >
-                    <TextField id="standard-basic" label="Your FirstName" variant="standard" />
-                    <TextField id="standard-basic" label="Your LastName" variant="standard" />
+                    <TextField
+                        id="standard-basic"
+                        label="Your Full Name"
+                        variant="standard"
+                        value={fullName}
+                        onChange={(event) => setFullName(event.target.value)}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        label="School"
+                        variant="standard"
+                        value={school}
+                        onChange={(event) => setSchool(event.target.value)}
+                    />
+
                 </Box>
                 <Box
                     component="form"
@@ -98,25 +141,21 @@ export function TeacherDataUploadPage ({ changePage }) {
                         margin: '30px',
                     }}
                 >
-                    <TextField id="standard-basic" label="School Name" variant="standard" />
-                    <TextField id="standard-basic" label="School Position" variant="standard" />
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 2, width: '30ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        margin: '30px',
-                    }}
-                >
-                    <TextField id="standard-basic" label="Class's grade " variant="standard" />
-                    <TextField id="standard-basic" label="Class number" variant="standard" />
+                    <TextField
+                        id="standard-basic"
+                        label="Grade"
+                        variant="standard"
+                        value={grade}
+                        onChange={(event) => setGrade(event.target.value)}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        label="Class"
+                        variant="standard"
+                        value={classnum}
+                        onChange={(event) => setClassnum(event.target.value)}
+                    />
+
                 </Box>
                 <div style={{
                     display: 'flex',
@@ -125,12 +164,17 @@ export function TeacherDataUploadPage ({ changePage }) {
                     marginTop: '40px',
                 }}>
                     <Tooltip title="Click to go next">
-                        <IconButton onClick={() => changePage('studentInfo')} ><ArrowForwardIosIcon sx={{ fontSize: 40, color: blue[500] }} style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }} />
+                        <IconButton onClick={() => {
+                            changePage('studentInfo');
+                            handleTeacher();
+                        }}>
+                            <ArrowForwardIosIcon sx={{ fontSize: 40, color: blue[500] }} style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }} />
                         </IconButton>
+
                     </Tooltip>
                 </div>
 
@@ -138,3 +182,10 @@ export function TeacherDataUploadPage ({ changePage }) {
         </Container>
     )
 }
+
+const mapActionsToProps = (dispatch) => {
+    return {
+        ...getActions(dispatch),
+    }
+}
+export default connect(null, mapActionsToProps)(TeacherDataUploadPage);

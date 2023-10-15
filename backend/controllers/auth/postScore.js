@@ -1,14 +1,19 @@
-const Score = require("../../models/score"); // 假设学生信息的模型为 Student
+const Score = require("../../models/score");
 
 const postScore = async (req, res) => {
     try {
         const { studentId, testScore } = req.body;
+        const userExists = await Score.exists({ studentId: studentId });
 
+        if (userExists) {
+            return res.status(409).send("student already exist");
+        }
         // create student info
         const score = await Score.create({
             studentId,
             testScore
         });
+
 
         // if all above passed return infomation
         res.status(201).json({
@@ -19,7 +24,7 @@ const postScore = async (req, res) => {
         });
     } catch (err) {
         // 如果出现错误，返回适当的错误响应
-        return res.status(500).send('Error. From postTeacher.js');
+        return res.status(500).send('Error.');
     }
 };
 

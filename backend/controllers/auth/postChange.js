@@ -6,7 +6,6 @@ const postChange = async (req, res) => {
     try {
         const { mail, oldPassword, newPassword } = req.body;
 
-        //防止用户已经存在的判断
         const userExists = await User.exists({ mail: mail.toLowerCase() });
         const user = await User.findOne({ mail: mail.toLowerCase() });
 

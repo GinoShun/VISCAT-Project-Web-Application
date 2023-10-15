@@ -2,12 +2,13 @@ const Teacher = require("../../models/teacher"); // 假设学生信息的模型�
 
 const postTeacher = async (req, res) => {
     try {
-        const { name, classnum, grade } = req.body;
+        const { name, classnum, grade, school } = req.body;
 
         // create student info
         const teacher = await Teacher.create({
             name,
             classnum,
+            school,
             grade
         });
 
@@ -16,7 +17,8 @@ const postTeacher = async (req, res) => {
             teacherDetails: {
                 name: teacher.name,
                 classnum: teacher.classnum,
-                grade: teacher.grade
+                grade: teacher.grade,
+                school: teacher.school
             }
         });
     } catch (err) {
