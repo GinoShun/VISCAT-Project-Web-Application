@@ -9,7 +9,7 @@ import Papa from 'papaparse';
 
 
 
-const DateRangeFilter = ({ onDataFiltered }) => {
+const DateRangeFilter = ({ onDataFiltered = () => {} }) => {
     const [startDate, setStartDate] = React.useState(null);
     const [endDate, setEndDate] = React.useState(null);
 
@@ -58,6 +58,8 @@ const DateRangeFilter = ({ onDataFiltered }) => {
                         return itemDate >= start && itemDate <= end;
                     });
                     onDataFiltered(filteredData);
+                    // test print
+                    console.log('Filtered Data:', filteredData);
                 }
             });
         };
