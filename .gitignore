@@ -1,2 +1,9 @@
 # ignore node_modules environment
 frontend/node_modules
+backend/node_modules
+
+# ignore package-lock.json
+frontend/package-lock.json
+
+# ignore .DS_Store
+.DS_Store
