@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import { Typography } from '@mui/material';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { useNavigate } from 'react-router-dom';
-import ForgotInputs from './ForgotInputs';
-import ForgotFooter from './ForgotFooter';
-import { connect } from "react-redux";
-import { getActions } from '../../../store/actions/authActions';
-import CircularProgress from '@mui/material/CircularProgress';
-import { green } from '@mui/material/colors';
-import Box from '@mui/material/Box';
-import axios from 'axios';
+import React, { useState } from 'react'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import { Typography } from '@mui/material'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import { useNavigate } from 'react-router-dom'
+import ForgotInputs from './ForgotInputs'
+import ForgotFooter from './ForgotFooter'
+import { connect } from "react-redux"
+import { getActions } from '../../../store/actions/authActions'
+import CircularProgress from '@mui/material/CircularProgress'
+import { green } from '@mui/material/colors'
+import Box from '@mui/material/Box'
+import axios from 'axios'
 
 
 const Forgot = ({ sendEmail }) => {
-  const [loading, setLoading] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
-  const timer = React.useRef();
+  const [loading, setLoading] = React.useState(false)
+  const [success, setSuccess] = React.useState(false)
+  const timer = React.useRef()
 
   const buttonSx = {
     ...(success && {
@@ -30,40 +30,40 @@ const Forgot = ({ sendEmail }) => {
         bgcolor: green[700],
       },
     }),
-  };
+  }
 
   React.useEffect(() => {
     return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
+      clearTimeout(timer.current)
+    }
+  }, [])
 
   const handleButtonClick = () => {
     if (!loading) {
-      setSuccess(false);
-      setLoading(true);
+      setSuccess(false)
+      setLoading(true)
       timer.current = window.setTimeout(() => {
-        setSuccess(true);
-        setLoading(false);
-      }, 3000);
+        setSuccess(true)
+        setLoading(false)
+      }, 3000)
     }
-  };
+  }
 
 
 
 
-  const history = useNavigate();
-  const [mail, setMail] = useState('');
+  const history = useNavigate()
+  const [mail, setMail] = useState('')
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   // const handleSubscribe = () => {
   //   const userDetails = {
@@ -73,16 +73,16 @@ const Forgot = ({ sendEmail }) => {
   // };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    handleButtonClick();
-    axios.post(`http://localhost:5002/api/auth/send-email`, { mail }, { withCredentials: true })
+    e.preventDefault()
+    handleButtonClick()
+    axios.post(`http://viscat.shop:5002/api/auth/send-email`, { mail }, { withCredentials: true })
       .then((res) => {
         if (res.data.Status === "Success") {
-          history('/login');
-          handleClose();
+          history('/login')
+          handleClose()
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
   }
 
 
@@ -96,14 +96,13 @@ const Forgot = ({ sendEmail }) => {
           border: 'none',
         }}
       >
-        Forgor your password?
+        Forgot your password?
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Forgot password</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Please enter your email address. You will receive a link to create a new password via email.
           </DialogContentText>
           <ForgotInputs
             mail={mail}
@@ -136,7 +135,7 @@ const Forgot = ({ sendEmail }) => {
         </DialogActions>
       </Dialog>
     </div>
-  );
+  )
 }
 
 const mapActionsToProps = (dispatch) => {
@@ -145,4 +144,4 @@ const mapActionsToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapActionsToProps)(Forgot);
+export default connect(null, mapActionsToProps)(Forgot)

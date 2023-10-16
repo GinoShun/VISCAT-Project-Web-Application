@@ -36,8 +36,8 @@ const forgotPassword = async (req, res) => {
         const mailOptions = {
             from: 'kesoku5@gmail.com',
             to: mail,
-            subject: '重置密码',
-            text: `请点击以下链接重置您的密码: http://localhost:3000/reset-password/${resetToken}`,
+            subject: 'Reset Password',
+            text: `Click to reset your password: http://localhost:3000/reset-password/${resetToken}`,
         };
 
         transporter.sendMail(mailOptions, (error, info) => {

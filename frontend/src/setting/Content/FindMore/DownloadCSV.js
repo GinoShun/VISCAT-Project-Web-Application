@@ -9,7 +9,7 @@ import DownloadIcon from '@mui/icons-material/Download'
 
 const handleDownloadCSV = async () => {
     try {
-        const response = await axios.get('http://34.129.48.12:5002/api/auth/exportCSV', { responseType: 'blob' })
+        const response = await axios.get('http://viscat.shop:5002/api/auth/exportCSV', { responseType: 'blob' })
 
         const blob = new Blob([response.data], { type: 'text/csv' })
 

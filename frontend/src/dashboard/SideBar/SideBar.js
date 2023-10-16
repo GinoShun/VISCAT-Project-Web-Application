@@ -32,7 +32,7 @@ const SideBar = ({ onContentChange }) => {
         onClick={handleDashboardClick}
         sx={{ width: '100%', textAlign: 'left', paddingLeft: '1rem' }}
       >
-        <Title title="Viscat" />
+        <Title title="VisCAT" />
       </Box>
 
       <FunctionSelect onContentChange={onContentChange} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StudentInforUploadPage } from './studentInfroUploadPage'
-import { TeacherDataUploadPage } from './teacherDataUploadPage'
+import TeacherDataUploadPage from './teacherDataUploadPage'
 import { SuccessPage } from './successPage'
 export function StudentInfoCollect () {
     const [type, setType] = useState('teacherInfo')

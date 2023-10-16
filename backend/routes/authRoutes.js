@@ -6,21 +6,21 @@ const validator = require("express-joi-validation").createValidator({});
 const auth = require("../middleware/auth");
 
 const registerSchema = Joi.object({
-    username: Joi.string().min(3).max(12).required(),
-    password: Joi.string().min(6).max(12).required(),
+    username: Joi.string().min(3).max(20).required(),
+    password: Joi.string().min(6).max(20).required(),
     mail: Joi.string().email().required(),
 });
 
 const loginSchema = Joi.object({
-    password: Joi.string().min(6).max(12).required(),
+    password: Joi.string().min(6).max(20).required(),
     mail: Joi.string().email().required(),
 
 });
 
 const changePasswordSchema = Joi.object({
   mail: Joi.string().email().required(),
-  oldPassword: Joi.string().min(6).max(12).required(),
-  newPassword: Joi.string().min(6).max(12).required(),
+  oldPassword: Joi.string().min(6).max(20).required(),
+  newPassword: Joi.string().min(6).max(20).required(),
 });
 
 const sendMailSchema = Joi.object({
@@ -62,6 +62,10 @@ router.post('/reset-password/:token', validator.body(resetPasswordSchema), authC
 router.post('/studentInfo', authControllers.controllers.postStudentInfo);
 router.post('/teacherInfo', authControllers.controllers.postTeacher);
 router.post('/score', authControllers.controllers.postScore);
+
+router.get('/getStudentInfo', authControllers.controllers.getStudentInfo);
+router.delete('/deleteStudentInfo/:studentId', authControllers.controllers.deleteStudentInfo);
+router.get('/getScore', authControllers.controllers.getScore);
 
 router.get("/test", auth, (req, res) => {
     res.send("request passed");

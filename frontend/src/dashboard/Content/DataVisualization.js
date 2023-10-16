@@ -1,7 +1,10 @@
 import React from 'react'
 import BasicTable from "./RawdataFile/test"
-import FigureOne from "./VisualizationGraphs/FigureOne"
+import PieGraph from "./VisualizationGraphs/PieGraph"
 import styled from '@emotion/styled'
+import DataTable from './DataTable/DataTable'
+import BarGraph from './VisualizationGraphs/BarGrph'
+
 const ContentContainer = styled('div')({
     width: '100%',
     height: '98%',
@@ -11,12 +14,7 @@ const ContentContainer = styled('div')({
 
 })
 
-const GraphContainer = styled('div')({
-    borderRadius: '10px',
-    overflow: 'auto',
-    alignContent: 'center',
-    justifyContent: 'center',
-})
+
 
 const GraphAreaUpper = styled('div')({
     display: 'flex',
@@ -28,7 +26,15 @@ const GraphAreaUpper = styled('div')({
     justifyContent: 'Space-between',
 })
 
-export function DataVisualization () {
+const GraphContainer = styled('div')({
+    borderRadius: '10px',
+    overflow: 'auto',
+    display: 'flex',           // Making this container a flex container
+    justifyContent: 'center',  // Centering content horizontally
+    alignItems: 'center',      // Centering content vertically
+})
+
+export function DataVisualization ({ data }) {
     return (
         <ContentContainer>
             <GraphAreaUpper>
@@ -36,16 +42,17 @@ export function DataVisualization () {
                     width: '60%',
                     height: '90%',
                     backgroundColor: '#ffffff',
-
+                    justifyContent: 'flex-start', // Override to align BarGraph to the left
                 }}>
-                    <FigureOne />
+                    <BarGraph data={data} />
                 </GraphContainer>
                 <GraphContainer style={{
                     width: '35%',
                     height: '90%',
                     backgroundColor: '#ffffff',
+                    // No need for alignContent and justifyContent here since they are set in the styled component
                 }}>
-                    <BasicTable />
+                    <PieGraph data={data} />
                 </GraphContainer>
             </GraphAreaUpper>
             <GraphContainer style={{
@@ -53,9 +60,8 @@ export function DataVisualization () {
                 height: '48%',
                 backgroundColor: '#ffffff',
             }}>
-                <BasicTable />
+                <DataTable data={data} />
             </GraphContainer>
         </ContentContainer>
-
     )
 }

@@ -18,7 +18,6 @@ const MainContainer = styled("div")({
 })
 const Content = ({ type }) => {
   let content
-
   switch (type) {
     case 'manageAccounts':
       content = <ManageAccounts />

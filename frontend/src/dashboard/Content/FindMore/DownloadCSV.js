@@ -4,12 +4,12 @@ import MenuItem from '@mui/material/MenuItem'
 import Badge from '@mui/material/Badge'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import axios from 'axios'
-
-
+import DownloadIcon from '@mui/icons-material/Download'
+import { Box } from "@mui/material"
 
 const handleDownloadCSV = async () => {
     try {
-        const response = await axios.get('http://34.129.48.12:5002/api/auth/exportCSV', { responseType: 'blob' })
+        const response = await axios.get('http://viscat.shop:5002/api/auth/exportCSV', { responseType: 'blob' })
 
         const blob = new Blob([response.data], { type: 'text/csv' })
 
@@ -26,28 +26,26 @@ const handleDownloadCSV = async () => {
 }
 
 
-
 const DownloadCSV = () => {
     return (
         <>
-            <MenuItem>
+            <Box sx={{ flexGrow: 0, alignItems: 'center', marginRight: '13px' }}>
                 <IconButton
-                    size="large"
-                    color="inherit"
                     onClick={handleDownloadCSV}
                 >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon
-                            sx={{
-                                width: 150,
-                                height: 150,
-                            }}
-                        />
-                    </Badge>
+                    <DownloadIcon
+                        alt="Remy Sharp"
+                        sx={{
+                            width: 50,
+                            height: 50,
+                            color: '#696969'
+                        }}
+                    />
                 </IconButton>
-            </MenuItem>
+            </Box>
         </>
     )
 }
+
 
 export default DownloadCSV

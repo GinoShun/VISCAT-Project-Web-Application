@@ -12,7 +12,7 @@ function RemakePassword() {
         e.preventDefault();
         console.log(token);
 
-        axios.post(`http://localhost:5002/api/auth/reset-password/${token}`, { oldPassword, newPassword }, { withCredentials: true })
+        axios.post(`http://viscat.shop:5002/api/auth/reset-password/${token}`, { oldPassword, newPassword }, { withCredentials: true })
             .then((res) => {
                 if (res.data.Status === "Success") {
                     navigate('/login');
