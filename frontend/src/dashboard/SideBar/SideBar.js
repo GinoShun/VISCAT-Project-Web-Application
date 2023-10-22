@@ -32,7 +32,7 @@ const SideBar = ({ onContentChange, onDataFiltered, csvData }) => {
       </Box>
 
       <FunctionSelect onContentChange={onContentChange} />
-      <Filter onDateChange={onDataFiltered} csvData={csvData} />
+      <Filter onDataFiltered={onDataFiltered} csvData={csvData} />
 
     </MainContainer>
   );
