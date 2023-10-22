@@ -15,48 +15,106 @@ const MainContainer = styled("div")({
   overflow: "auto",
 })
 
-function Content ({ type }) {
-  const [csvData, setCSVData] = useState([])
+// move csv and filter function to dashboard
+function Content({ type, filteredData }) { // filteredData as props
 
-  const handleGetCSV = () => {
-    fetch('http://localhost:5002/api/auth/exportCSV')
-      .then(response => response.text())
-      .then(data => {
-        const lines = data.trim().split('\n')
-        const headers = lines[0].split(',')
-        const items = lines.slice(1).map(line => {
-          const rowData = line.split(',')
-          let obj = {}
-          headers.forEach((header, index) => {
-            obj[header] = rowData[index]
-          })
-          return obj
-        })
-        setCSVData(items)
-      })
-      .catch(error => {
-        console.error("Error fetching CSV data:", error)
-      })
-  }
-
-  useEffect(() => {
-    handleGetCSV()
-  }, [])
-
-  let content
+  let content;
   switch (type) {
     case 'rawData':
-      content = <RawData data={csvData} />
-      break
+      content = (
+        <>
+          <RawData data={filteredData} />
+        </>
+      ); 
+      break;
     case 'dataVisualization':
-      content = <DataVisualization data={csvData} />
-      break
+      content = (
+        <>
+          <DataVisualization data={filteredData} />
+        </>
+      ); 
+      break;
     default:
-      content = <div>Welcome! Please select content from the sidebar.</div>
-      break
+      content = <div>Welcome! Please select content from the sidebar.</div>;
+      break;
   }
 
-  return <MainContainer>{content}</MainContainer>
+  return (
+    <MainContainer>{content}</MainContainer>
+  );
 }
 
-export default Content
+export default Content;
+
+
+// function Content ({ type }) {
+//   const [csvData, setCSVData] = useState([]);
+//   const [filteredData, setFilteredData] = useState([]);
+
+//   const handleGetCSV = () => {
+//     fetch('http://localhost:5002/api/auth/exportCSV')
+//       .then(response => response.text())
+//       .then(data => {
+//         const lines = data.trim().split('\n');
+//         const headers = lines[0].split(',');
+//         const items = lines.slice(1).map(line => {
+//           const rowData = line.split(',');
+//           let obj = {};
+//           headers.forEach((header, index) => {
+//             obj[header] = rowData[index];
+//           })
+//           return obj;
+//         })
+//         setCSVData(items);
+//       })
+//       .catch(error => {
+//         console.error("Error fetching CSV data:", error);
+//       })
+//   }
+
+//   const onDataFiltered = (data) => {
+//     setFilteredData(data);
+//   };
+
+//   useEffect(() => {
+//     handleGetCSV()
+//     // check csv data
+//     console.log('CSV Data:', csvData);
+//     console.log('Filtered Data:', filteredData);
+//   }, [])
+
+//   useEffect(() => {
+//     if (csvData.length > 0) {
+//       setFilteredData(csvData);
+//     }
+//   }, [csvData]);
+
+//   let content;
+//   switch (type) {
+//     case 'rawData':
+//       content = (
+//         <>
+//           <RawData data={filteredData} />
+//         </>
+//       ); 
+//       break;
+//     case 'dataVisualization':
+//       content = (
+//         <>
+//           <DataVisualization data={filteredData} />
+//         </>
+//       ); 
+//       break;
+//     default:
+//       content = <div>Welcome! Please select content from the sidebar.</div>;
+//       break;
+//   }
+
+//   return (
+//     <DataAndFunctionsContext.Provider value={{ onDataFiltered, csvData }}>
+//       <MainContainer>{content}</MainContainer>
+//     </DataAndFunctionsContext.Provider>
+//   );
+// }
+
+// export default Content;

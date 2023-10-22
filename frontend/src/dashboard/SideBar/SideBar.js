@@ -1,10 +1,10 @@
-import React from "react"
-import { styled } from "@mui/system"
-import Title from "./NavTitle"
-import { useNavigate } from 'react-router-dom'
-import { Box } from "@mui/material"
-import FunctionSelect from "./FunctionSelect"
-import Filter from "./Filter"
+import React from "react";
+import { styled } from "@mui/system";
+import Title from "./NavTitle";
+import { useNavigate } from 'react-router-dom';
+import { Box } from "@mui/material";
+import FunctionSelect from "./FunctionSelect";
+import Filter from "./DateRangeFilter";
 
 const MainContainer = styled("div")({
   width: "20%",
@@ -12,19 +12,15 @@ const MainContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  backgroundColor: " #ffffff;",
-})
+  backgroundColor: "#ffffff;",
+});
 
-const SideBar = ({ onContentChange }) => {
-  const navigate = useNavigate()
+const SideBar = ({ onContentChange, onDataFiltered, csvData }) => {
+  const navigate = useNavigate();
 
   const handleDashboardClick = () => {
-    navigate('/dashboard')
-  }
-  const handleDateFilter = (date) => {
-    // Handle the date filtering logic here
-    console.log(date) // For debugging purposes
-  }
+    navigate('/dashboard');
+  };
 
   return (
     <MainContainer>
@@ -36,10 +32,10 @@ const SideBar = ({ onContentChange }) => {
       </Box>
 
       <FunctionSelect onContentChange={onContentChange} />
-      <Filter onDateChange={handleDateFilter} />
+      <Filter onDateChange={onDataFiltered} csvData={csvData} />
 
     </MainContainer>
-  )
-}
+  );
+};
 
-export default SideBar
+export default SideBar;
