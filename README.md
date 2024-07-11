@@ -1,29 +1,42 @@
 # Viscat test Online Dashborad
+
 [Link for instruction](https://youtu.be/LpWXKtgOasY)
 
 ## Introduction
+
 This web service system is an online dashboard system, used to analyze data from Viscat visual disease testing and enable the teachers to enter students' information into our system. The admin of the dashboard system and the users approved by the admin can access our dashboard to view all test results and their analysis. For teachers who going to hold the tests for their students, this system will allow them to enter students and class information
 
+## Overview
+
+This is our web service's architectural
+![architectural][./intro/architectural.png]
+
+This is our dashboard website design
+![dashboard][./intro/UI.jpeg]
+
 ### Environment
+
 - **Node.js Version:** 18.16+ | **Source:** [Node.js Official Website](https://nodejs.org/en)
 - **MongoDB Version:** 6.0.9+ | **Source:** [MongoDB Official Website](https://www.mongodb.com/try/download/community)
-  
+
 ### How to Run
 
-Follow these steps to run the project:        
+Follow these steps to run the project:  
  0. **Download ZIP file from github**
-   ```
-   cd your file location should be here   eg. cd project-main
-   then press ls
-   make sure it show
-   backend		frontend
-   ```
+
+```
+cd your file location should be here   eg. cd project-main
+then press ls
+make sure it show
+backend		frontend
+```
 
 1. **Delete the `node_modules` folder:**
-   Run the following command in the project's root directory to delete the `node_modules` folder:  **do not delete package.json**
+   Run the following command in the project's root directory to delete the `node_modules` folder: **do not delete package.json**
    ```sh
    rm -rf node_modules
    rm package-lock.json(optional)
+   ```
 2. **then start backend and frontend fron terminal**
    ```
    cd backend
@@ -48,10 +61,9 @@ Follow these steps to run the project:
    npm install
    npm start
    ```
-it is ok if there are warning, just make sure no error
-If you encounter a different error than the one above, please proceed with the first step: Delete the `node_modules` folder and `package-lock.js`, **do not delete package.json**!!!!!!
+   it is ok if there are warning, just make sure no error
+   If you encounter a different error than the one above, please proceed with the first step: Delete the `node_modules` folder and `package-lock.js`, **do not delete package.json**!!!!!!
 
-   
 ### Directory structure
 
 ```
@@ -72,7 +84,7 @@ If you encounter a different error than the one above, please proceed with the f
         ├── Dashboard
         │   └── Dashboard.js        //ignore
         ├── api.js                   //api
-        ├── authPages 
+        ├── authPages
         │   ├── LoginPage
         │   │   ├── LoginPage.js           //important   login page main
         │   │   ├── LoginPageFooter.js     //important   login submit button, redirection need an account => from /login to /register
@@ -88,7 +100,7 @@ If you encounter a different error than the one above, please proceed with the f
         ├── serviceWorker.js       //ignore
         ├── shared
         │   ├── components                   //common module for login and register
-        │   │   ├── AlertNotification.js    //ignore  
+        │   │   ├── AlertNotification.js    //ignore
         │   │   ├── AuthBox.js              //important   page frame
         │   │   ├── CustomPrimaryButton.js  //important   submit button
         │   │   ├── InputWithLabel.js       //important   input module, read more in LoginPageInputs.js / RegisterPageInputs.js
@@ -114,3 +126,4 @@ Tips: Within the authbox tag, you can use <div></div> tags, which might help ach
 
 The main focus is on making changes in the authpage folder and the shared/component folder. You are free to add functions and tags, but try to avoid deleting existing functions (excluding HTML tags or visual elements) because some functions are responsible for validation.
 
+```
