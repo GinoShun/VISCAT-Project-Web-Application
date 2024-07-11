@@ -1,9 +1,13 @@
-# IT-Project
-COMP30022
+# Viscat test Online Dashborad
 [Link for instruction](https://youtu.be/LpWXKtgOasY)
+
+## Introduction
+This web service system is an online dashboard system, used to analyze data from Viscat visual disease testing and enable the teachers to enter students' information into our system. The admin of the dashboard system and the users approved by the admin can access our dashboard to view all test results and their analysis. For teachers who going to hold the tests for their students, this system will allow them to enter students and class information
+
 ### Environment
 - **Node.js Version:** 18.16+ | **Source:** [Node.js Official Website](https://nodejs.org/en)
 - **MongoDB Version:** 6.0.9+ | **Source:** [MongoDB Official Website](https://www.mongodb.com/try/download/community)
+  
 ### How to Run
 
 Follow these steps to run the project:        
