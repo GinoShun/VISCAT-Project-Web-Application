@@ -100,8 +100,6 @@ If you encounter a different error than the one above, please proceed with the f
             │   ├── alertReducer.js         //ignore
             │   └── authReducer.js         //ignore
             └── store.js                   //ignore
-```
-[![how to debug faster?!!!](https://i.postimg.cc/gj8MYTXc/2023-09-06-2-13-30.png)](https://postimg.cc/m1Z3jVyK)
 
 ### Instruction for reading code
 1. Start by examining the existing routers in app.js, such as /login, /register, or /dashboard.
