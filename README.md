@@ -8,10 +8,10 @@ This web service system is an online dashboard system, used to analyze data from
 
 ## Overview
 
-This is our web service's architectural
+web service's architectural
 ![architectural](./intro/architectural.png)
 
-This is our dashboard website design
+dashboard website design
 ![dashboard](./intro/UI.jpeg)
 
 ### Environment
